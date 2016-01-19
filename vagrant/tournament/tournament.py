@@ -186,7 +186,7 @@ def swissPairings(tournamentID):
     """
     db, cursor = db_and_new_cursor()
     cursor.execute("select id, name from fullStanding "
-                   "where tournament = %s order by wins desc, omw desc;",
+                   "where tournament = %s;",
                    (tournamentID,))
     players = cursor.fetchall()
     # If there is an odd number of players
