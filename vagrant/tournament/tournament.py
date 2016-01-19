@@ -8,7 +8,7 @@ import random
 
 
 def db_and_new_cursor():
-	db = connect()
+    db = connect()
     cursor = db.cursor()
     return db, cursor
 
