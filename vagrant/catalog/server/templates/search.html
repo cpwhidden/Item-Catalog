@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% from "macros.html" import productDiv with context %}
+{% block loginBar %}
+{{ super() }}
+{% endblock %}
+{% block container %}
+<div id="search-results-row" class="row">
+	<div id="search-results-banner" class="col-xs-12 col-md-12">
+		Search Results for: {{query}}
+	</div>
+	<div id="search-results" class="col-xs-12 col-md-12">
+		{% for product in products %}
+		{{productDiv(product, False)}}
+		{% endfor %}
+	</div>
+	<div id="pagination" class="col-xs-12 col-md-12">
+		<nav>
+		  <ul class="pagination">
+		    <li class="
+		    {% if currentPage <= 1 %}
+		    disabled
+		    {% endif %}
+		    ">
+		      <a href="#" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		    {% for i in pages %}
+		    <li class="
+			{% if currentPage == i %}
+		    active
+		    {% endif %}
+		    ">
+		    	<a href="{{url_for('searchPage', query = query, currentPage = i)}}">{{i}}</a>
+		    </li>
+		    {% endfor %}
+		    <li class="
+		    {% if currentPage >= totalPages %}
+		    disabled
+		    {% endif %}
+		    ">
+		      <a href="#" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		  </ul>
+		</nav>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% from "macros.html" import productDiv, carousel with context %}
+{% block loginBar %}
+{{ super() }}
+{% endblock %}
+{% block container %}
+<div id="highest-rated-row" class="row">
+	<div id="highest-rated-col" class="col-xs-12 col-md-12">
+		<h2>Highest Rated</h2>
+		{{carousel('highest-rated', highestRated)}}
+	</div>
+</div>
+<div id="newly-added-row" class="row">
+	<div id="newly-added-div" class="col-xs-12 col-md-12">
+		<h2>Newly Added</h2>
+		{{carousel('newly-added', newlyAdded)}}
+	</div>
+</div>
+{% endblock %}

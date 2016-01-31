@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% from "macros.html" import productDiv with context %}
+{% block loginBar %}
+{{ super() }}
+{% endblock %}
+{% block container %}
+<div id="category-banner-row" class="row">
+	<div id="category-banner" class="col-xs-12 col-md-12">
+		<a href="{{url_for('category', category_name = product.category.name)}}">See all in category: {{product.category.name}}</a>
+	</div>
+</div>
+<div id="product-profile-row" class="row">
+	<div id="product-picture" class="col-xs-6">
+		<img src="{{url_for('static', filename= ('product_images/' + product.imageName))}}" class="product-image">
+	</div>
+	<div id="product-info" class="col-xs-6">
+		<div id="product-name">
+			{{product.name}}
+		</div>
+		<div id="product-price">
+			${{product.price}}
+		</div>
+		<div id="product-rating">
+			{% if rating %}{{rating}}/5{% endif %}
+		</div>
+		{% if currentUser != None %}
+		<div id="add-to-cart">
+			<a href="{{url_for('addToCart', product_id = product.id)}}">Add to Cart</a>
+		</div>
+		{% else %}
+		Log in to add to cart
+		{% endif %}
+	</div>
+	{% if currentUser != None %}
+	<div id="edit-delete" class="col-xs-12 col-md-12">
+		<a href="{{url_for('addReview', product_id = product.id)}}">Add Review</a> 
+		{% if isOwner == True %}
+		| <a href="{{url_for('editProduct', product_id = product.id)}}">Edit</a> |
+		<a href="{{url_for('deleteProduct', product_id = product.id)}}">Delete</a>
+		{% endif %}
+	</div>
+	{% endif %}
+</div>
+<div id="reviews-row" class="row">
+	<div id="review-title" class="col-xs-12 col-md-12">
+		Reviews
+	</div>
+	<div id="add-review" class="col-xs-12 col-md-12">
+		{% if queryCurrentUser() != None %}
+		<a href="{{url_for('addReview', product_id = product.id)}}">Add Review</a> 
+		{% else %}
+		Log in to add a review
+		{% endif %}
+	</div>
+	{% for review in reviews %}
+	<div class="col-xs-12 col-md-12">
+		Reviewed by {{review.user.name}} on {{ review.dateAdded.strftime('%m-%d-%Y') }} 
+		<br>Rated: {{review.rating}}/5
+		<br>{{review.description}}
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

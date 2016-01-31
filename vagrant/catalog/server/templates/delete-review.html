@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% from "macros.html" import productDiv with context %}
+{% block container %}
+	<div id="deletion-row" class="row">
+		<div class="col-xs-12 col-md-12">
+			Are you sure you want to delete the record for {{product.name}}?
+			<br>Rating: {{ review.rating }}/5
+			<br>Description: {{ review.description }}
+			<form method="POST" action="{{url_for('deleteReview', product_id = product.id, review_id = review.id)}}">
+				{{ form.csrf_token}}
+			    <input type="submit" value="Delete">
+			</form>
+		</div>
+	</div>
+{% endblock %}

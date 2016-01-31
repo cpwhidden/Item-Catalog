@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% from "macros.html" import productDiv with context %}
+{% block loginBar %}
+{{ super() }}
+{% endblock %}
+{% block container %}
+<div id="review-row" class="row">
+	<div id="review" class="col-xs-12 col-md-12">
+		{{productDiv(product, False)}}
+		<form method="post" action="{{url_for('addReview', product_id = product.id)}}">
+			{{form.csrf_token}}
+			{{form.rating.label}} {{form.rating}}
+			<br>{{form.description.label}} {{form.description}}
+			<br><br><input type="submit" value="Add Review">
+		</form>
+	</div>
+</div>
+{% endblock %}

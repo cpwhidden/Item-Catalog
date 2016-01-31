@@ -1,0 +1,111 @@
+{% macro loginBar(currentUser) %}
+{% if currentUser != None %}
+	<div id="is-logged-in" class="row">
+		<div id="logout-div" class="col-xs-6 col-md-6">
+			<a href="{{url_for('logout')}}">Logout</a> |
+			<a href="{{url_for('userProfile', user_id = currentUser.id)}}">Account Info for {{currentUser.name}}</a>
+		</div>
+		<div id="shopping-cart" class="col-xs-6 col-md-6">
+			<a href="{{url_for('shoppingCart')}}">Shopping Cart</a>
+		</div>
+	</div>
+{% else %}
+	<div id="no-login" class="row">
+		<div id="google-signin" class="col-xs-6">
+			<button id="signinButton">Sign in with Google</button>
+			<script>
+			  $('#signinButton').click(function() {
+			    // signInCallback defined in step 6.
+			    auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(googleSigninCallback);
+			  });
+			</script>
+			<div id="result"></div>
+		</div>
+		<div id="facebook-signin" class="col-xs-6">
+			Facebook
+		</div>
+	</div>
+	<script>
+		function googleSigninCallback(authResult) {
+		  if (authResult['code']) {
+		    // Hide the sign-in button now that the user is authorized, for example:
+		    $('#signinButton').attr('style', 'display: none');
+
+		    // Send the code to the server
+		    $.ajax({
+		      type: 'POST',
+		      url: '/google-login?state_token={{generateStateToken()}}',
+		      contentType: 'application/octet-stream; charset=utf-8',
+		      success: function(result) {
+		        // Handle or verify the server response.
+		        window.location.reload()
+		      },
+		      processData: false,
+		      data: authResult['code']
+		    });
+		  } else {
+		    // There was an error.
+		    alert('There was an error signing into Google')
+		  }
+		}
+	</script>
+{% endif %}
+{% endmacro %}
+
+{% macro productDiv(product, includeControls) %}
+<div class="product-div">
+	<a href="{{url_for('product', product_id = product.id)}}">
+	<div class="product-image">
+		<img src="{{url_for('static', filename= ('product_images/' + product.imageName))}}" class="product-image img-response center-block">
+	</div>
+	<div class="product-info" style="display:inline-block">
+		{{product.name}}<br>
+		{% if product.averageRating %}
+		{{ product.averageRating }}/5<br>
+		{% endif %}
+		${{product.price}}<br>
+		</a>
+		{% if includeControls %}
+		<a href="{{url_for('editProduct', product_id = product.id)}}">Edit</a> |
+		<a href="{{url_for('deleteProduct', product_id = product.id)}}">Delete</a>
+		{% endif %}
+	</div>
+</div>
+
+{% endmacro %}
+
+{% macro carousel(id, products) %}
+<div id="{{id}}" class="carousel slide" data-ride="carousel">
+  	<!-- Indicators -->
+  	<ol class="carousel-indicators">
+  		{% for index in indices(products) %}
+    	<li data-target="#{{id}}" data-slide-to="{{index}}" class="{% if index == 0 %}active{% endif %}"></li>
+    	{% endfor %}
+  	</ol>
+
+  	<!-- Wrapper for slides -->
+  	<div class="carousel-inner" role="listbox">
+  		{% for product in products %}
+    	<div class="item {% if product == products[0] %}active{% endif %}">
+    		<a href="{{url_for('product', product_id = product.id)}}" class="outlined-text"> 
+      			<img src="{{url_for('static', filename=('product_images/' + product.imageName))}}" alt="{{product.name}}" class="carousel-image img-responsive center-block">
+      		</a>
+      		<div class="carousel-caption">
+        		<a href="{{url_for('product', product_id = product.id)}}" class="outlined-text"> {{product.name}}{% if product.rating != undefined %}| {{product.rating}}/5{% endif %} | ${{product.price}}</a>
+      		</div>
+    	</div>
+    	{% endfor %}
+  	</div>
+
+  	<!-- Controls -->
+  	<a class="left carousel-control" href="#{{id}}" role="button" data-slide="prev">
+    	<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    	<span class="sr-only">Previous</span>
+  	</a>
+  	<a class="right carousel-control" href="#{{id}}" role="button" data-slide="next">
+    	<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    	<span class="sr-only">Next</span>
+  	</a>
+</div>
+
+{% endmacro %}

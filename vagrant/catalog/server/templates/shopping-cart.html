@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% from "macros.html" import productDiv with context %}
+{% block loginBar %}
+{{ super() }}
+{% endblock %}
+{% block container %}
+<div id="shopping-cart-row" class="row">
+	<div id="shopping-cart-banner" class="col-xs-12 col-md-12">
+		Shopping Cart
+	</div>
+	<div id="shopping-cart-contents" class="col-xs-12 col-md-12">
+		{% for product in products %}
+		{{ productDiv(product) }}
+		{% endfor %}
+	</div>
+	<div id="shopping-cart-totals" class="col-xs-12 col-md-12">
+		Total items: {{ count }}
+		<br> Total cost: ${{ total }}
+	</div>
+</div>
+{% endblock %}

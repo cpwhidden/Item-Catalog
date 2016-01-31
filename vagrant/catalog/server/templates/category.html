@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% from "macros.html" import productDiv, carousel with context %}
+{% block loginBar %}
+{{ super() }}
+{% endblock %}
+{% block container %}
+<div id="category-banner-row" class="row">
+	<div id="category-banner" class="col-xs-12 col-md-12">
+		<h2>{{currentCategory.name}}</h2>
+	</div>
+</div>
+<div id="highest-rated-row" class="row">
+	<div id="highest-rated" class="col-xs-12 col-md-12">
+		<h2>Highest Rated</h2>
+		{{carousel('highest-rated', highestRated)}}
+	</div>
+</div>
+<div id="newly-added-row" class="row">
+	<div id="newly-added" class="col-xs-12 col-md-12">
+		<h2>Newly Added</h2>
+		{{carousel('newly-added', newlyAdded)}}
+	</div>
+</div>
+<div id="product-list-row" class="row">
+	<div id="product-list" class="col-xs-12 col-md-12">
+		<h2>All Listings for {{currentCategory.name}}</h2>
+		{% for product in products %}
+		{{productDiv(product, False)}}
+		{% endfor %}
+	</div>
+	<div id="pagination" class="col-xs-12 col-md-12">
+		<nav>
+		  <ul class="pagination">
+		    <li class="
+		    {% if currentPage <= 1 %}
+		    disabled
+		    {% endif %}
+		    ">
+		      <a href="#" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		    {% for i in pages %}
+		    <li class="
+			{% if currentPage == i %}
+		    active
+		    {% endif %}
+		    ">
+		    	<a href="{{url_for('searchPage', query = query, currentPage = i)}}">{{i}}</a>
+		    </li>
+		    {% endfor %}
+		    <li class="
+		    {% if currentPage >= totalPages %}
+		    disabled
+		    {% endif %}
+		    ">
+		      <a href="#" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		  </ul>
+		</nav>
+	</div>
+</div>
+{% endblock %}

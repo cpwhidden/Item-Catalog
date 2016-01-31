@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% from "macros.html" import productDiv with context %}
+{% block loginBar %}
+{{ super() }}
+{% endblock %}
+{% block container %}
+<div id="profile-row" class="row">
+	<div id="profile-info" class="col-xs-12 col-md-12">
+		<h2>{{ user.name }}'s profile</h2>
+		Name: {{user.name}}
+		<br>Email: {{user.email}}
+	</div>
+	<div id="add-edit-delete" class="col-xs-12 col-md-12">
+		<a href="{{url_for('newProduct')}}">Add a product</a> |
+		<a href="{{url_for('editUser', user_id = user.id)}}">Edit User</a> |
+		<a href="{{url_for('deleteUser', user_id = user.id)}}">Remove Account</a>
+	</div>
+</div>
+<div id="items-selling-row" class="row">
+	<div id="items-selling" class="col-xs-12 col-md-12">
+		<h2>Products sold by {{user.name}}</h2>
+		{% for product in products %}
+		{{productDiv(product, True)}}
+		{% endfor %}
+	</div>
+</div>
+<div id="reviews-row" class="row">
+	<div id="reviews" class="col-xs-12 col-md-12">
+		<h2>Reviews by {{user.name}}</h2>
+		{% for review in reviews %}
+		<div class="review">
+			<div class="review-image">
+				<img src="{{url_for('static', filename=('product_images/' + review.product.imageName))}}" alt="{{review.product.name}}" class="product-image">
+			</div>
+			<div class="review-info">
+				{{review.product.name}}
+				{% if review.rating %}<br>{{review.rating}}/5{% endif %}
+				<br>{{review.description}}
+				<br><a href="{{url_for('editReview', product_id = review.product_id, review_id = review.id)}}">Edit</a> |
+				<a href="{{url_for('deleteReview', product_id = review.product_id, review_id = review.id)}}">Delete</a>
+			</div>
+		</div>			
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

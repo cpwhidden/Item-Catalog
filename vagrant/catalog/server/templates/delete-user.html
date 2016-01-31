@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% from "macros.html" import productDiv with context %}
+{% block loginBar %}
+{% endblock %}
+{% block navBar %}
+{% endblock %}
+{% block container %}
+	<div id="deletion-row" class="row">
+		<div id="add-edit-delete" class="col-xs-12 col-md-12">
+			<a href="{{url_for('newProduct')}}">Add a product</a> |
+			<a href="{{url_for('editUser', user_id = currentUser.id)}}">Edit User</a> |
+			Remove account
+		</div>
+		<div class="col-xs-12 col-md-12">
+			Are you sure you want to delete the record for {{user.name}}?
+			<form method="POST" action="{{url_for('deleteUser', user_id = user.id)}}">
+				{{ form.csrf_token}}
+			    <br><input type="submit" value="Delete">
+			</form>
+			<br>
+			<button type="button" onClick="window.location = {{url_for('userProfile', user_id = user.id)}}">Cancel</button>
+		</div>
+	</div>
+	<div id="items-selling" class="row">
+		<div class="col-xs-12 col-md-12">
+			The following items the user is selling will disappear.
+			{% for product in products %}
+			{{productDiv(product, False)}}
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% from "macros.html" import productDiv with context %}
+{% block loginBar %}
+{{ super() }}
+{% endblock %}
+{% block navBar %}
+{% endblock %}
+{% block container %}
+<div id="form-row" class="row">
+	<div id="add-edit-delete" class="col-xs-12 col-md-12">
+		Add a product |
+		<a href="{{url_for('editUser', user_id = queryCurrentUser().id)}}">Edit User</a> |
+		<a href="{{url_for('deleteUser', user_id = queryCurrentUser().id)}}">Remove account</a>
+	</div>
+	<div id="form-div" class="col-xs-12 col-md-12">
+		<form method="POST" action="{{url_for('newProduct')}}" enctype="multipart/form-data">
+		    {{ form.csrf_token }}
+		    {{ form.name.label }} {{ form.name(size=20) }}
+		    <br>{{ form.price.label}} {{ form.price }}
+		    <br>{{ form.description.label}} {{ form.description }}
+			<br>{{ form.category_id.label }} {{ form.category_id }}
+			<br>{{ form.image.label }} {{ form.image }}
+		    <br><input type="submit" value="Add Product">
+		</form>
+	</div>
+</div>
+{% endblock %}
