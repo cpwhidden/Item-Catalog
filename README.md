@@ -29,6 +29,11 @@ You will need [Vagrant](www.vagrantup.com) and [VirtualBox](www.virtualbox.org) 
 6. Start the server with `python runserver.py`
 7. Navigate in your browser to `http://localhost:8000`
 
+# Populator
+To populate the database with mock records:
+1. Navigate to `cd /vagrant/catalog/` at the command line
+2. Run `python populator.py`
+
 # Access JSON endpoint
 All JSON requests are HTTP GET requests. The base directory is the domain name. For example, `http://localhost:8000/categories/json` to request all categories
 1. Get a list of all categories at `/categories/json`
