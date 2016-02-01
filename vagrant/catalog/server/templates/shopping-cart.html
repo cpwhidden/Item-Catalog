@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% from "macros.html" import productDiv with context %}
+{% from "macros.html" import shoppingCartProduct with context %}
 {% block loginBar %}
 {{ super() }}
 {% endblock %}
@@ -10,7 +10,7 @@
 	</div>
 	<div id="shopping-cart-contents" class="col-xs-12 col-md-12">
 		{% for product in products %}
-		{{ productDiv(product) }}
+		{{ shoppingCartProduct(product) }}
 		{% endfor %}
 	</div>
 	<div id="shopping-cart-totals" class="col-xs-12 col-md-12">

@@ -73,7 +73,24 @@
 		{% endif %}
 	</div>
 </div>
+{% endmacro %}
 
+{% macro shoppingCartProduct(product) %}
+<div class="product-div">
+	<a href="{{url_for('product', product_id = product.id)}}">
+	<div class="product-image">
+		<img src="{{url_for('static', filename= ('product_images/' + product.imageName))}}" class="product-image img-response center-block">
+	</div>
+	</a>
+	<div class="product-info" style="display:inline-block">
+		{{product.name}}<br>
+		{% if product.averageRating %}
+		{{ product.averageRating }}/5<br>
+		{% endif %}
+		${{product.price}}<br>
+		<a href="{{url_for('removeFromCart', product_id = product.id)}}">Remove</a>
+	</div>
+</div>
 {% endmacro %}
 
 {% macro carousel(id, products) %}

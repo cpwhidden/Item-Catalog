@@ -31,30 +31,18 @@
 	<div id="pagination" class="col-xs-12 col-md-12">
 		<nav>
 		  <ul class="pagination">
-		    <li class="
-		    {% if currentPage <= 1 %}
-		    disabled
-		    {% endif %}
-		    ">
-		      <a href="#" aria-label="Previous">
+		    <li class="{% if currentPage <= 1 %}disabled{% endif %}">
+		      <a href="{% if currentPage > 1 %}{{url_for('categoryPage', category_name = currentCategory.name, currentPage = currentPage - 1)}}{% endif %}" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
 		    {% for i in pages %}
-		    <li class="
-			{% if currentPage == i %}
-		    active
-		    {% endif %}
-		    ">
-		    	<a href="{{url_for('searchPage', query = query, currentPage = i)}}">{{i}}</a>
+		    <li class="{% if currentPage == i %}active{% endif %}">
+		    	<a href="{% if currentPage != i %}{{url_for('categoryPage', category_name = currentCategory.name, currentPage = i)}}{% endif %}">{{i}}</a>
 		    </li>
 		    {% endfor %}
-		    <li class="
-		    {% if currentPage >= totalPages %}
-		    disabled
-		    {% endif %}
-		    ">
-		      <a href="#" aria-label="Next">
+		    <li class="{% if currentPage >= totalPages %}disabled{% endif %}">
+		      <a href="{% if currentPage < totalPages %}{{url_for('categoryPage', category_name = currentCategory.name, currentPage = currentPage + 1)}}{% endif %}" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
 		      </a>
 		    </li>

@@ -26,6 +26,13 @@ class Category(Base):
 	id = Column(Integer, primary_key = True)
 	name = Column(String(100), nullable = False, unique = True)
 
+	@property
+	def serialize(self):
+		return {
+			'id' : self.id,
+			'name' : self.name
+		}
+
 
 class User(Base):
 	__tablename__ = 'user'
@@ -52,7 +59,7 @@ class Product(Base):
 	price = Column(Numeric(10,2))
 	description = Column(String(500))
 	imageName = Column(String(100), server_default = 'default_product.png')
-	dateAdded = Column(Date, nullable = False, server_default = datetime.date.today().strftime('%Y-%m-%d'))
+	dateAdded = Column(Date, nullable = False, server_default = datetime.date.today().strftime('%Y-%m-%d %H-%M-%S'))
 	category_id = Column(Integer, ForeignKey('category.id'))
 	category = relationship(Category)
 	seller_id = Column(Integer, ForeignKey('user.id'))
@@ -60,6 +67,18 @@ class Product(Base):
 	buyers = relationship(ShoppingCart)
 	reviews = relationship('Review', cascade='all, delete-orphan')
 	productsBeingBought = relationship('ShoppingCart', cascade='all, delete-orphan')
+
+	@property
+	def serialize(self):
+		# Returns object data in easily serializeable format
+		return {
+			'id' : self.id,
+			'name' : self.name,
+			'description' : self.description,
+			'price' : self.price,
+			'dateAdded' : self.dateAdded.strftime('%Y-%m-%d'),
+			'category' : self.category.name
+		}
 
 
 images = UploadSet('images', IMAGES)
@@ -83,6 +102,17 @@ class Review(Base):
 	product = relationship(Product)
 	user_id = Column(Integer, ForeignKey('user.id'))
 	user = relationship(User)
+
+	@property
+	def serialize(self):
+		return {
+			'id' : self.id,
+			'rating' : self.rating,
+			'description' : self.description,
+			'dateAdded' : self.dateAdded.strftime('%Y-%m-%d'),
+			'product' : self.product.name,
+			'user' : self.user.name
+		}
 
 
 class ReviewForm(Form):
