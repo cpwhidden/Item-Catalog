@@ -210,9 +210,13 @@ def addToCart(product_id):
 @flask.route('/product/<int:product_id>/remove-from-cart')
 def removeFromCart(product_id):
 	currentUser = getCurrentUser()
-	form = Form()
-	if form.validate_on_submit():
-		shoppingRecord = session.query(ShoppingCart).filter(product_id == product_id, buyer_id == currentUser.id)
+	if currentUser != None:
+		shoppingRecord = session.query(ShoppingCart).filter(ShoppingCart.product_id == product_id, ShoppingCart.buyer_id == currentUser.id).one()
+		session.delete(shoppingRecord)
+		session.commit()
+		return redirect(url_for('shoppingCart'))
+	else:
+		return redirect(url_for('home'))
 
 
 #
