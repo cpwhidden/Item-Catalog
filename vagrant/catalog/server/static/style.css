@@ -107,6 +107,12 @@ img {
 	font-size: 28px;
 }
 
-#googleSigninButton > div {
+#googleSigninButton {
+	text-align: right;
+}
+
+#googleSigninButton > a > img {
 	margin: auto 10px auto auto;
+	max-width: 150px;
+	max-height: 25px;
 }

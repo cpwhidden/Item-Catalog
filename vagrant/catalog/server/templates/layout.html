@@ -13,15 +13,8 @@
 		        	auth2 = gapi.auth2.init({
 		          	client_id: '151968694594-i0g2o2drkinksl45tq18b14euanfjmol.apps.googleusercontent.com',
 		          	// Scopes to request in addition to 'profile' and 'email'
-		          	scope: 'openid profile email'
+		          	scope: 'profile openid email'
 		        	});
-		        	gapi.signin2.render('googleSigninButton', {
-				        'scope': 'https://www.googleapis.com/auth/plus.login',
-				        'width': 150,
-				        'height': 25,
-				        'longtitle': true,
-				        'theme': 'dark',
-				    });
 		      	});
 		    }
 		</script>
