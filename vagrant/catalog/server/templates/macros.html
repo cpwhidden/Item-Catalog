@@ -12,9 +12,9 @@
 {% else %}
 	<div id="no-login" class="row">
 		<div id="google-signin" class="col-xs-6">
-			<button id="signinButton">Sign in with Google</button>
+			<div id="googleSigninButton"></div>
 			<script>
-			  $('#signinButton').click(function() {
+			  $('#googleSigninButton').click(function() {
 			    // signInCallback defined in step 6.
 			    auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(googleSigninCallback);
 			  });
@@ -22,7 +22,9 @@
 			<div id="result"></div>
 		</div>
 		<div id="facebook-signin" class="col-xs-6">
-			Facebook
+			<fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
+			</fb:login-button>
+			<div id="status"></div>
 		</div>
 	</div>
 	<script>
@@ -34,7 +36,7 @@
 		    // Send the code to the server
 		    $.ajax({
 		      type: 'POST',
-		      url: '/google-login?state_token={{generateStateToken()}}',
+		      url: '/google-login?google_state_token={{generateStateToken("google")}}',
 		      contentType: 'application/octet-stream; charset=utf-8',
 		      success: function(result) {
 		        // Handle or verify the server response.

@@ -37,8 +37,17 @@ def login():
 
 @flask.route('/logout')
 def logout():
+	if 'login_type' in login_session:
+		if login_session['login_type'] == 'google':
+			return googleLogout()
+		elif login_session['login_type'] == 'facebook':
+			return facebookLogout()
 	if 'user_id' in login_session:
 		del login_session['user_id']
+	if 'access_token' in login_session:
+		del login_session['facebook_access_token']
+	if 'login_type' in login_session:
+		del login_session['login_type']
 	return redirect(url_for('home'))
 
 @flask.route('/shopping-cart')
@@ -304,10 +313,10 @@ def deleteReview(product_id, review_id):
 
 @flask.route('/google-login', methods=['POST'])
 def googleLogin():
-	if request.args.get('state_token') != login_session['state_token']:
+	if request.args.get('google_state_token') != login_session['google_state_token']:
 		return makeJSONResponse('Invalid state token', 401)
 	authorizationCode = request.data
-	CLIENT_SECRET_FILE = getClientSecret()
+	CLIENT_SECRET_FILE = getGoogleClientSecret()
 	try:
 		credentials = client.credentials_from_clientsecrets_and_code(CLIENT_SECRET_FILE,  ['https://www.googleapis.com/auth/drive.appdata', 'profile', 'email'],
     authorizationCode)
@@ -331,19 +340,79 @@ def googleLogin():
 		login_session['user_id'] = newUser.id
 	else:
 		login_session['user_id'] = matchingUser.id
-	return makeJSONResponse('Logged in to Google', 200)
+	login_session['login_type'] = 'google'
+	login_session['google_access_token'] = credentials.access_token
+	return makeJSONResponse('Logged in through Google', 200)
 
-@flask.route('/google-logout')
+@flask.route('/google-logout', methods=['POST'])
 def googleLogout():
-	return 'Logging out of Google'
+	if 'google_access_token' in login_session and login_session['access_token'] is not None:
+		url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % login_session['google_access_token']
+		h = httplib2.Http()
+		result = h.request(url, 'GET')[0]
+		if result['status'] == '200':
+			del login_session['user_id']
+			del login_session['google_access_token']
+			del login_session['login_type']
+		else:
+			return makeJSONResponse('Failure to log out of Google. (Failure to revoke token)', 400)
+	else:
+		return makeJSONResponse('User was not connected', 401)
 
-@flask.route('/facebook-login')
+
+@flask.route('/facebook-login', methods=['POST'])
 def facebookLogin():
-	return 'Logging in with Facebook account'
+	print 'logging into Facebook'
+	print 'got state token: %s' % request.args.get('facebook_state_token')
+	print 'need state token: %s' % login_session['facebook_state_token']
+	if request.args.get('facebook_state_token') != login_session['facebook_state_token']:
+		print 'token does not match'
+		return makeJSONResponse('Invalid state token', 401)
+	access_token = request.data
 
-@flask.route('/facebook-logout')
+	clientSecretsJSON = json.loads(open(getFacebookClientSecrets(), 'r').read())
+	app_id = clientSecretsJSON['web']['app_id']
+	app_secret = clientSecretsJSON['web']['app_secret']
+	exchangeURL = 'https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s' % (app_id, app_secret, access_token)
+	exchangeResult = httplib2.Http().request(exchangeURL, 'GET')[1]
+	token = exchangeResult.split('&')[0]
+	infoURL = 'https://graph.facebook.com/v2.2/me?%s&fields=name,id,email' % token
+	infoResult = httplib2.Http().request(infoURL, 'GET')[1]
+	data = json.loads(infoResult)
+	print data
+	oauth_id = data['id']
+	matchingUser = session.query(User).filter(User.oauth_id == oauth_id).first()
+	if matchingUser == None:
+		newUser = User(oauth_id = oauth_id, name = data['name'], email = data['email'])
+		session.add(newUser)
+		session.commit()
+		login_session['user_id'] = newUser.id
+	else:
+		login_session['user_id'] = matchingUser.id
+	login_session['login_type'] = 'facebook'
+	login_session['facebook_access_token'] = access_token
+	return makeJSONResponse('Logged in through Facebook', 200)
+
+
+@flask.route('/facebook-logout', methods=['POST'])
 def facebookLogout():
-	return 'Logging out of Facebook'
+	user = getCurrentUser()
+	if user is not None:
+		oauth_id = user.oauth_id
+		url = 'https://graph.facebook.com/%s/permissions?access_token=%s' % (oauth_id, login_session['facebook_access_token'])
+		print url
+		h = httplib2.Http()
+		result = h.request(url, 'DELETE')[0]
+		print result
+		if result['status'] == '200':
+			del login_session['user_id']
+			del login_session['facebook_access_token']
+			del login_session['login_type']
+			return redirect(url_for('home'))
+		else:
+			return makeJSONResponse('Failure to log out of Facebook. (Failure to delete permission)', 400)
+	else:
+		return makeJSONResponse('User was not connected to Facebook', 401)
 
 @flask.context_processor
 def utility_processor():
@@ -353,9 +422,9 @@ def utility_processor():
 		return getCurrentUser()
 	def indices(array):
 		return [i for i in range(len(array))]
-	def generateStateToken():
+	def generateStateToken(type):
 		state_token = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
-		login_session['state_token'] = state_token
+		login_session[type + '_state_token'] = state_token
 		return state_token
 	return dict(getCategories = getCategories, queryCurrentUser = queryCurrentUser, indices = indices, generateStateToken = generateStateToken)
 
@@ -366,9 +435,11 @@ def makeJSONResponse(message, status):
 	response.headers['Content-Type'] = 'application/json'
 	return response
 
-def getClientSecret():
-	#return url_for('static', filename='client_secret.json')
-	return 'server/static/client_secret.json'
+def getGoogleClientSecret():
+	return 'server/static/google_client_secrets.json'
+
+def getFacebookClientSecrets():
+	return 'server/static/facebook_client_secrets.json'
 
 
 def getCurrentUser():

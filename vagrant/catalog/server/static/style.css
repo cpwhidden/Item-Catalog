@@ -24,8 +24,8 @@ h1, h2 {
 }
 
 .product-image {
-	max-width: 500px;
-	max-height: 500px;
+	max-width: 400px;
+	max-height: 400px;
 }
 
 .carousel {
@@ -105,4 +105,8 @@ img {
 
 .outlined-text {
 	font-size: 28px;
+}
+
+#googleSigninButton > div {
+	margin: auto 10px auto auto;
 }

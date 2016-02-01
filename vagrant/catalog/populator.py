@@ -26,10 +26,10 @@ session.add(toys)
 chris = User(oauth_id='0', name='Chris')
 session.add(chris)
 
-dress = Product(name='Dress', price=49.99, description='A beautiful dress', category=clothes, seller=chris)
+dress = Product(name='Black Dress', imageName = 'black-dress-clipart.jpg', price=49.99, description='A beautiful dress', category=clothes, seller=chris)
 session.add(dress)
 
-boots = Product(name='Boots', price=79.99, description='Sturdy leather boots', category=shoes, seller=chris)
+boots = Product(name='Leather Boots', imageName = 'leather-boots.jpg', price=79.99, description='Sturdy leather boots', category=shoes, seller=chris)
 session.add(boots)
 
 bootsReview = Review(rating=3, description='Very sturdy!', product=boots, user=chris)
