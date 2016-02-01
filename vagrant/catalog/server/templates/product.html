@@ -23,7 +23,7 @@
 		<div id="product-rating">
 			{% if rating %}{{rating}}/5{% endif %}
 		</div>
-		{% if currentUser is not None %}
+		{% if currentUser != None %}
 		<div id="add-to-cart">
 			<a href="{{url_for('addToCart', product_id = product.id)}}">Add to Cart</a>
 		</div>
@@ -31,7 +31,7 @@
 		Log in to add to cart
 		{% endif %}
 	</div>
-	{% if currentUser is not None %}
+	{% if currentUser != None %}
 	<div id="edit-delete" class="col-xs-12 col-md-12">
 		<a href="{{url_for('addReview', product_id = product.id)}}">Add Review</a> 
 		{% if isOwner == True %}
@@ -46,7 +46,7 @@
 		Reviews
 	</div>
 	<div id="add-review" class="col-xs-12 col-md-12">
-		{% if queryCurrentUser() is not None %}
+		{% if queryCurrentUser() != None %}
 		<a href="{{url_for('addReview', product_id = product.id)}}">Add Review</a> 
 		{% else %}
 		Log in to add a review
