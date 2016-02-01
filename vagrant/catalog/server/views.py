@@ -371,6 +371,7 @@ def categoryPage(category_name, currentPage):
 @flask.route('/user/<int:user_id>/profile')
 def userProfile(user_id):
 	user = session.query(User).filter(User.id == user_id).one()
+	# Only display profile if user is current user
 	if matchesLoginUser(user):
 		products = session.query(Product).filter(Product.seller == user).all()
 		reviews = session.query(Review).filter(Review.user == user).all()
@@ -383,6 +384,7 @@ def userProfile(user_id):
 @flask.route('/user/<int:user_id>/edit', methods=['GET', 'POST'])
 def editUser(user_id):
 	user = session.query(User).filter(User.id == user_id).one()
+	# Only allow current user to edit own profile
 	if matchesLoginUser(user):
 		form = UserForm(request.form, user)
 		if form.validate_on_submit():
@@ -400,6 +402,7 @@ def editUser(user_id):
 @flask.route('/user/<int:user_id>/profile/delete', methods=['GET', 'POST'])
 def deleteUser(user_id):
 	user = session.query(User).filter(User.id == user_id).one()
+	# Only delete user if it matches the current user
 	if matchesLoginUser(user):
 		products = session.query(Product).filter(Product.seller == user).all()
 		form = Form()
