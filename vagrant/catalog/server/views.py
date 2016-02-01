@@ -24,6 +24,10 @@ def home():
 	return render_template('home.html', highestRated = highestRated, newlyAdded = newlyAdded)
 
 
+#
+#	Login, logout procedures
+#
+
 # Only needed to login as user from populator.py
 @flask.route('/login')
 def login():
@@ -39,6 +43,7 @@ def logout():
 			return googleLogout()
 		elif login_session['login_type'] == 'facebook':
 			return facebookLogout()
+	# Make sure login_session variables are deleted just in case
 	if 'user_id' in login_session:
 		del login_session['user_id']
 	if 'access_token' in login_session:
@@ -47,11 +52,15 @@ def logout():
 		del login_session['login_type']
 	return redirect(url_for('home'))
 
+
 @flask.route('/google-login', methods=['POST'])
 def googleLogin():
+	# Verify state token
 	if request.args.get('google_state_token') != login_session['google_state_token']:
 		return makeJSONResponse('Invalid state token', 401)
 	authorizationCode = request.data
+
+	# Get credentials
 	CLIENT_SECRET_FILE = getGoogleClientSecret()
 	try:
 		credentials = client.credentials_from_clientsecrets_and_code(CLIENT_SECRET_FILE,  ['https://www.googleapis.com/auth/drive.appdata', 'profile', 'email'],
@@ -62,12 +71,15 @@ def googleLogin():
 	drive_service = discovery.build('drive', 'v3', http=http_auth)
 	appfolder = drive_service.files().get(fileId='appfolder').execute
 
+	# Get user info
 	oauth_id = credentials.id_token['sub']
 	email = credentials.id_token['email']
 	url = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=%s' % credentials.access_token
 	response = requests.get(url)
 	data = json.loads(response.text)
 	name = data['name']
+
+	# Check if user already exists
 	matchingUser = session.query(User).filter(User.oauth_id == oauth_id).first()
 	if matchingUser == None:
 		newUser = User(oauth_id = oauth_id, name = name, email = email)
@@ -79,6 +91,7 @@ def googleLogin():
 	login_session['login_type'] = 'google'
 	login_session['google_access_token'] = credentials.access_token
 	return makeJSONResponse('Logged in through Google', 200)
+
 
 @flask.route('/google-logout', methods=['POST'])
 def googleLogout():
@@ -99,11 +112,8 @@ def googleLogout():
 
 @flask.route('/facebook-login', methods=['POST'])
 def facebookLogin():
-	print 'logging into Facebook'
-	print 'got state token: %s' % request.args.get('facebook_state_token')
-	print 'need state token: %s' % login_session['facebook_state_token']
+	# Verify state token
 	if request.args.get('facebook_state_token') != login_session['facebook_state_token']:
-		print 'token does not match'
 		return makeJSONResponse('Invalid state token', 401)
 	access_token = request.data
 
@@ -116,8 +126,9 @@ def facebookLogin():
 	infoURL = 'https://graph.facebook.com/v2.2/me?%s&fields=name,id,email' % token
 	infoResult = httplib2.Http().request(infoURL, 'GET')[1]
 	data = json.loads(infoResult)
-	print data
 	oauth_id = data['id']
+
+	# Check if user already exists
 	matchingUser = session.query(User).filter(User.oauth_id == oauth_id).first()
 	if matchingUser == None:
 		newUser = User(oauth_id = oauth_id, name = data['name'], email = data['email'])
@@ -152,9 +163,15 @@ def facebookLogout():
 		return makeJSONResponse('User was not connected to Facebook', 401)
 
 
+#
+#	Shopping cart
+#
+
+
 @flask.route('/shopping-cart')
 def shoppingCart():
 	user = getCurrentUser()
+	# Only logged in users can access shopping cart
 	if user != None:
 		shoppingCart = session.query(Product.id, Product.name, Product.imageName, Product.price, ShoppingCart.quantity).join(ShoppingCart, Product.id == ShoppingCart.product_id).join(User, User.id == ShoppingCart.buyer_id)
 		products = shoppingCart.all()
@@ -168,9 +185,11 @@ def shoppingCart():
 	else:
 		return redirect(url_for('home'))
 
+
 @flask.route('/product/<int:product_id>/add-to-cart')
 def addToCart(product_id):
 	currentUser = getCurrentUser()
+	# Only logged in users can add to cart
 	if currentUser != None:
 		existingRecord = session.query(ShoppingCart).join(User, User.id == ShoppingCart.buyer_id).filter(ShoppingCart.product_id == product_id, User.id == currentUser.id).first()
 		if existingRecord != None:
@@ -187,6 +206,7 @@ def addToCart(product_id):
 	else:
 		return redirect(url_for('home'))
 
+
 @flask.route('/product/<int:product_id>/remove-from-cart')
 def removeFromCart(product_id):
 	currentUser = getCurrentUser()
@@ -194,6 +214,10 @@ def removeFromCart(product_id):
 	if form.validate_on_submit():
 		shoppingRecord = session.query(ShoppingCart).filter(product_id == product_id, buyer_id == currentUser.id)
 
+
+#
+#	Search
+#
 
 @flask.route('/search')
 def search():
@@ -219,12 +243,19 @@ def searchPage(query, currentPage):
 	pages = [(i+1) for i in range(totalPages)]
 	return render_template('search.html', query = query, currentPage = currentPage, pages= pages, totalPages = totalPages, currentUser = currentUser, products = products)
 
+
+#
+#	Browsing by category
+#
+
 @flask.route('/category/<string:category_name>')
 def category(category_name):
 	return redirect(url_for('categoryPage', category_name = category_name, currentPage = 1))
 
+
 @flask.route('/category/<string:category_name>/<int:currentPage>')
 def categoryPage(category_name, currentPage):
+	# Display only a certain number of items per page
 	resultsPerPage = 5
 	offset = resultsPerPage * (currentPage - 1)
 	currentUser = getCurrentUser()
@@ -241,6 +272,11 @@ def categoryPage(category_name, currentPage):
 	products = session.query(Product).filter(Product.category == currentCategory).offset(offset).limit(resultsPerPage).all()
 	return render_template('category.html', categories = categories, currentPage = currentPage, pages = pages, totalPages = totalPages, currentCategory = currentCategory, products = products, highestRated = highestRated, newlyAdded = newlyAdded, currentUser = currentUser)
 
+
+#
+#	User profile
+#
+
 @flask.route('/user/<int:user_id>/profile')
 def userProfile(user_id):
 	user = session.query(User).filter(User.id == user_id).one()
@@ -250,6 +286,7 @@ def userProfile(user_id):
 		return render_template('user-profile.html', currentUser = user, user = user, products = products, reviews = reviews)
 	else:
 		return redirect(url_for('home'))
+
 
 @flask.route('/user/<int:user_id>/edit', methods=['GET', 'POST'])
 def editUser(user_id):
@@ -265,6 +302,7 @@ def editUser(user_id):
 			return render_template('edit-user.html', currentUser = user, form = form, user = user)
 	else:
 		return redirect(render_template('home'))
+
 
 @flask.route('/user/<int:user_id>/profile/delete', methods=['GET', 'POST'])
 def deleteUser(user_id):
@@ -283,6 +321,12 @@ def deleteUser(user_id):
 	else:
 		return redirect(render_template('home'))
 
+
+#
+#	Product
+#
+
+
 @flask.route('/product/<int:product_id>/profile')
 def product(product_id):
 	product = session.query(Product).filter(Product.id == product_id).one()
@@ -299,6 +343,7 @@ def product(product_id):
 @flask.route('/product/new', methods=['GET', 'POST'])
 def newProduct():
 	user = getCurrentUser()
+	# Only logged in users can add a product
 	if user != None:
 		categories = session.query(Category).order_by(Category.name).all()
 		form = ProductForm(request.form)
@@ -327,6 +372,7 @@ def newProduct():
 def editProduct(product_id):
 	currentUser = getCurrentUser()
 	product = session.query(Product).filter(Product.id == product_id).one()
+	# Only allow product edit if the seller is the current user
 	if matchesLoginUser(product.seller):
 		form = ProductForm(request.form, product)
 		categories = session.query(Category).all()
@@ -348,10 +394,12 @@ def editProduct(product_id):
 	else:
 		return redirect(url_for('home'))
 
+
 @flask.route('/product/<int:product_id>/remove', methods=['GET', 'POST'])
 def deleteProduct(product_id):
 	currentUser = getCurrentUser()
 	product = session.query(Product).filter(Product.id == product_id).one()
+	# Only all product deletion if the seller is the current user
 	if matchesLoginUser(product.seller):
 		form = Form()
 		if form.validate_on_submit():
@@ -363,10 +411,16 @@ def deleteProduct(product_id):
 	else:
 		return redirect(url_for('home'))
 
+
+#
+#	Reviews
+#
+
 @flask.route('/product/<int:product_id>/review/add', methods=['GET', 'POST'])
 def addReview(product_id):
 	currentUser = getCurrentUser()
 	product = session.query(Product).filter(Product.id == product_id).one()
+	# Only allow logged in users to add a review
 	if currentUser != None:
 		form = ReviewForm(request.form)
 		if form.validate_on_submit():
@@ -382,11 +436,13 @@ def addReview(product_id):
 	else:
 		return redirect(url_for('product', product_id = product_id))
 
+
 @flask.route('/product/<int:product_id>/review/<int:review_id>/edit', methods=['GET', 'POST'])
 def editReview(product_id, review_id):
 	currentUser = getCurrentUser()
 	product = session.query(Product).filter(Product.id == product_id).one()
 	review = session.query(Review).filter(Review.id == review_id).one()
+	# Only allow review edits if reviewer is the current user
 	if matchesLoginUser(review.user):
 		form = ReviewForm(request.form, review)
 		if form.validate_on_submit():
@@ -399,11 +455,13 @@ def editReview(product_id, review_id):
 	else:
 		return redirect(url_for('home'))
 
+
 @flask.route('/product/<int:product_id>/review/<int:review_id>/remove', methods=['GET', 'POST'])
 def deleteReview(product_id, review_id):
 	currentUser = getCurrentUser()
 	product = session.query(Product).filter(Product.id == product_id).one()
 	review = session.query(Review).filter(Review.id == review_id).one()
+	# Only allow review deletion if reviers is the current user
 	if matchesLoginUser(review.user):
 		form = Form()
 		if form.validate_on_submit():
@@ -416,7 +474,9 @@ def deleteReview(product_id, review_id):
 		return redirect(url_for('home'))
 
 
-# JSON routes
+# 
+#	JSON routes
+#
 
 @flask.route('/categories/json')
 def categoriesJSON():
@@ -429,10 +489,12 @@ def productsInCategory(category_id):
 	products = session.query(Product).filter(Product.category_id == category_id).all()
 	return jsonify(Product=[p.serialize for p in products])
 
+
 @flask.route('/product/<int:product_id>/json')
 def productJSON(product_id):
 	product = session.query(Product).filter(Product.id == product_id).one()
 	return jsonify(Product=product.serialize)
+
 
 @flask.route('/product/<int:product_id>/reviews/json')
 def reviewsForProduct(product_id):
@@ -440,7 +502,9 @@ def reviewsForProduct(product_id):
 	return jsonify(Review=[r.serialize for r in reviews])
 
 
-# RSS rebuild task and endpoint
+#
+#	RSS rebuild task and endpoint
+#
 
 def render_without_request(template_name, **template_vars):
     """
@@ -454,6 +518,7 @@ def render_without_request(template_name, **template_vars):
     template = env.get_template(template_name)
     return template.render(**template_vars)
 
+
 def buildNewlyAddedRSSFeed():
 	engine = create_engine(dbPath)
 	Base.metadata.bind = engine
@@ -464,6 +529,7 @@ def buildNewlyAddedRSSFeed():
 	with open('server/static/rss/newly-added.xml', 'w') as rss_file:
 	    rss_file.write(xml)
 
+
 @flask.route('/rss/newly-added.xml')
 def newlyAddedRSSFeed():
 	with open('server/static/rss/newly-added.xml', 'r') as rss_file:
@@ -471,6 +537,7 @@ def newlyAddedRSSFeed():
 	response = make_response(content)
 	response.headers['Content-Type'] = 'text/xml'
 	return response
+
 
 def buildNewlyAddedAtomFeed():
 	engine = create_engine(dbPath)
@@ -482,6 +549,7 @@ def buildNewlyAddedAtomFeed():
 	with open('server/static/atom/newly-added.xml', 'w') as atom_file:
 	    atom_file.write(xml)
 
+
 @flask.route('/atom/newly-added.xml')
 def newlyAddedAtomFeed():
 	with open('server/static/atom/newly-added.xml', 'r') as atom_file:
@@ -490,6 +558,10 @@ def newlyAddedAtomFeed():
 	response.headers['Content-Type'] = 'text/xml'
 	return response
 
+
+#
+#	Utility functions for templates
+#
 
 @flask.context_processor
 def utility_processor():
@@ -507,13 +579,16 @@ def utility_processor():
 
 
 # Utility functions
+
 def makeJSONResponse(message, status):
 	response = make_response(json.dumps(message), status)
 	response.headers['Content-Type'] = 'application/json'
 	return response
 
+
 def getGoogleClientSecret():
 	return 'server/static/google_client_secrets.json'
+
 
 def getFacebookClientSecrets():
 	return 'server/static/facebook_client_secrets.json'
@@ -524,6 +599,7 @@ def getCurrentUser():
 		return session.query(User).filter(User.id == login_session['user_id']).one()
 	else:
 		return None
+
 
 def matchesLoginUser(user):
 	if 'user_id' in login_session and login_session['user_id'] == user.id:

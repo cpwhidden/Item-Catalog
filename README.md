@@ -9,6 +9,7 @@ This is a practice web application that provides functionality for an item catal
 * Users can add products to the catalog to sell
 * Users can upload images for their products.
 * Front-end done with Bootstrap and includes pagination and carousels.
+* Forms are created with WTF-Forms, which do form validation and eliminate cross-site request forgery attacks.
 * Server side framework is Flask
 * Google and Facebook logins are handled server-side
 * DB-API is Flask-SQLAlchemy
