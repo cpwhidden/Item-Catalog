@@ -53,7 +53,7 @@
 		{% endif %}
 	</div>
 	{% for review in reviews %}
-	<div class="col-xs-12 col-md-12">
+	<div class="col-xs-12 col-md-12 review">
 		Reviewed by {{review.user.name}} on {{ review.dateAdded.strftime('%m-%d-%Y') }} 
 		<br>Rated: {{review.rating}}/5
 		<br>{{review.description}}
