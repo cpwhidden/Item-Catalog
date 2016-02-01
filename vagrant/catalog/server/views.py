@@ -173,10 +173,10 @@ def shoppingCart():
 	user = getCurrentUser()
 	# Only logged in users can access shopping cart
 	if user != None:
-		shoppingCart = session.query(Product.id, Product.name, Product.imageName, Product.price, ShoppingCart.quantity).join(ShoppingCart, Product.id == ShoppingCart.product_id).join(User, User.id == ShoppingCart.buyer_id)
+		shoppingCart = session.query(Product.id, Product.name, Product.imageName, Product.price, ShoppingCart.quantity).join(ShoppingCart, Product.id == ShoppingCart.product_id).join(User, User.id == ShoppingCart.buyer_id).filter(ShoppingCart.buyer_id == user.id)
 		products = shoppingCart.all()
 		count = session.query(func.sum(ShoppingCart.quantity)).filter(ShoppingCart.buyer_id == user.id).one()[0]
-		totalQuery = session.query(func.sum(Product.price * ShoppingCart.quantity)).join(ShoppingCart, Product.id == ShoppingCart.product_id).join(User, User.id == ShoppingCart.buyer_id).one()[0]
+		totalQuery = session.query(func.sum(Product.price * ShoppingCart.quantity)).join(ShoppingCart, Product.id == ShoppingCart.product_id).join(User, User.id == ShoppingCart.buyer_id).filter(ShoppingCart.buyer_id == user.id).one()[0]
 		total = '0.00'
 		if totalQuery != None:
 			total = '%0.2f' % totalQuery
