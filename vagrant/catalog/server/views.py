@@ -2,12 +2,12 @@ from server import flask, dbPath
 from server.models import Base, Category, Product, ProductForm, User, UserForm, Review, ReviewForm, ShoppingCart
 from sqlalchemy import create_engine, desc, func
 from sqlalchemy.orm import sessionmaker
-from flask import url_for, render_template, session as login_session, redirect, request, make_response, jsonify
+from flask import url_for, render_template, session as login_session, redirect, request, make_response, jsonify, flash
 from flask_wtf import Form
 from werkzeug import secure_filename
 from apiclient import discovery
 from oauth2client import client
-import os, datetime, json, random, string, requests, httplib2
+import os, datetime, json, random, string, requests, httplib2, re
 import jinja2
 
 # Initiate SQLAlchemy engine
@@ -194,7 +194,6 @@ def shoppingCart():
 		total = '0.00'
 		if totalQuery != None:
 			total = '%0.2f' % totalQuery
-		print total
 		return render_template('shopping-cart.html', user = user, products = products, count = count, total = total)
 	else:
 		return redirect(url_for('home'))
@@ -240,6 +239,7 @@ def removeFromCart(product_id):
 @flask.route('/search')
 def search():
 	query = request.args.get('query')
+	query = re.sub(r'[^\w]', '', query)
 	if query == '':
 		return redirect(url_for('home'))
 	else:
@@ -255,8 +255,11 @@ def searchPage(query, currentPage):
 	currentUser = getCurrentUser()
 	offset = resultsPerPage * (currentPage - 1)
 	totalPages = (session.query(Product).filter(Product.name.contains(query)).count() - 1) / resultsPerPage + 1
-	if currentPage > totalPages or currentPage < 1:
-		return redirect(url_for('searchPage', query = query, currentPage = 1))
+	if totalPages > 0:
+		if currentPage > totalPages:
+			return redirect(url_for('searchPage', query = query, currentPage = totalPages))
+		if currentPage < 1:
+			return redirect(url_for('searchPage', query = query, currentPage = 1))
 	products = session.query(Product).filter(Product.name.contains(query)).offset(offset).limit(resultsPerPage).all()
 	pages = [(i+1) for i in range(totalPages)]
 	return render_template('search.html', query = query, currentPage = currentPage, pages= pages, totalPages = totalPages, currentUser = currentUser, products = products)
@@ -331,7 +334,7 @@ def deleteUser(user_id):
 		if form.validate_on_submit():
 			session.delete(user)
 			if 'user_id' in login_session:
-				del login_session['user']
+				del login_session['user_id']
 			session.commit()
 			return redirect(url_for('home'))
 		else:
