@@ -46,8 +46,10 @@ def logout():
 	# Make sure login_session variables are deleted just in case
 	if 'user_id' in login_session:
 		del login_session['user_id']
-	if 'access_token' in login_session:
+	if 'google_access_token' in login_session:
 		del login_session['google_access_token']
+	if 'facebook_access_token' in login_session:
+		del login_session['facebook_access_token']
 	if 'login_type' in login_session:
 		del login_session['login_type']
 	return redirect(url_for('home'))
@@ -105,6 +107,12 @@ def googleLogout():
 			del login_session['login_type']
 			return redirect(url_for('home'))
 		else:
+			if 'user_id' in login_session:
+				del login_session['user_id']
+			if 'google_access_token' in login_session:
+				del login_session['google_access_token']
+			if 'login_type' in login_session:
+				del login_session['login_type']
 			return makeJSONResponse('Failure to log out of Google. (Failure to revoke token)', 400)
 	else:
 		return makeJSONResponse('User was not connected', 401)
@@ -158,6 +166,12 @@ def facebookLogout():
 			del login_session['login_type']
 			return redirect(url_for('home'))
 		else:
+			if 'user_id' in login_session:
+				del login_session['user_id']
+			if 'facebook_access_token' in login_session:
+				del login_session['facebook_access_token']
+			if 'login_type' in login_session:
+				del login_session['login_type']
 			return makeJSONResponse('Failure to log out of Facebook. (Failure to delete permission)', 400)
 	else:
 		return makeJSONResponse('User was not connected to Facebook', 401)

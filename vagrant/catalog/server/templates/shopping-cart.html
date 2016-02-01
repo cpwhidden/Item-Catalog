@@ -6,7 +6,7 @@
 {% block container %}
 <div id="shopping-cart-row" class="row">
 	<div id="shopping-cart-banner" class="col-xs-12 col-md-12">
-		Shopping Cart
+		<h2>Shopping Cart</h2>
 	</div>
 	<div id="shopping-cart-contents" class="col-xs-12 col-md-12">
 		{% for product in products %}
@@ -14,8 +14,8 @@
 		{% endfor %}
 	</div>
 	<div id="shopping-cart-totals" class="col-xs-12 col-md-12">
-		Total items: {{ count }}
-		<br> Total cost: ${{ total }}
+		<h3>Total items: {{ count }}
+		<br>Total cost: ${{ total }}</h3>
 	</div>
 </div>
 {% endblock %}

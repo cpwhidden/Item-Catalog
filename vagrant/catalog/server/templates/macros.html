@@ -88,6 +88,7 @@
 		{{ product.averageRating }}/5<br>
 		{% endif %}
 		${{product.price}}<br>
+		Qty: {{ product.quantity}}<br>
 		<a href="{{url_for('removeFromCart', product_id = product.id)}}">Remove</a>
 	</div>
 </div>
