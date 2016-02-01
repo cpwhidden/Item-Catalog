@@ -338,12 +338,13 @@ def categoryPage(category_name, currentPage):
 		.filter(Product.category == currentCategory) \
 		.count() - 1) / resultsPerPage + 1
 	pages = [(i+1) for i in range(totalPages)]
-	if currentPage > totalPages:
-		return redirect(url_for('categoryPage', 
-			category_name = category_name, currentPage = totalPages))
-	if currentPage < 1:
-		return redirect(url_for('categoryPage', 
-			category_name = category_name, currentPage = 1))
+	if totalPages > 0:
+		if currentPage > totalPages:
+			return redirect(url_for('categoryPage', 
+				category_name = category_name, currentPage = totalPages))
+		if currentPage < 1:
+			return redirect(url_for('categoryPage', 
+				category_name = category_name, currentPage = 1))
 	categories = session.query(Category).all()
 	highestRated = session.query(Product.id, Product.name, 
 		Product.imageName, Product.price, \
