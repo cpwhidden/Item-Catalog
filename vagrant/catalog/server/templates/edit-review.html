@@ -7,7 +7,7 @@
 <div id="review-row" class="row">
 	<div id="review" class="col-xs-12 col-md-12">
 		{{productDiv(product, False)}}
-		<form method="post" action="{{url_for('editReview', product_id = product.id)}}">
+		<form method="post" action="{{url_for('editReview', product_id = product.id, review_id = review.id)}}">
 			{{form.csrf_token}}
 			{{form.rating.label}} {{form.rating}}
 			<br>{{form.description.label}} {{form.description}}

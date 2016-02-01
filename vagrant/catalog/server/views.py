@@ -558,7 +558,7 @@ def editReview(product_id, review_id):
 			return redirect(url_for('product', product_id = product_id))
 		else:
 			return render_template('edit-review.html', 
-				currentUser = currentUser, form = form, product = product)
+				currentUser = currentUser, form = form, product = product, review = review)
 	else:
 		return redirect(url_for('home'))
 
