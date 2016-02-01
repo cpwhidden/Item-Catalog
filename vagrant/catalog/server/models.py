@@ -1,14 +1,17 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
-from sqlalchemy import create_engine, Table, Column, ForeignKey, Integer, String, Numeric, Date
+from sqlalchemy import create_engine, Table, Column
+from sqlalchemy import ForeignKey, Integer, String, Numeric, Date
 from flask_wtf import Form
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from flask.ext.uploads import UploadSet, IMAGES
-from wtforms import DateField, DecimalField, IntegerField, RadioField, SelectField, StringField, TextAreaField
+from wtforms import DateField, DecimalField, IntegerField
+from wtforms import RadioField, SelectField, StringField, TextAreaField
 from wtforms.validators import InputRequired, Length, NumberRange, Regexp
 import datetime
 
 Base = declarative_base()
+
 
 class ShoppingCart(Base):
 	__tablename__ = 'shopping_cart'
@@ -59,14 +62,16 @@ class Product(Base):
 	price = Column(Numeric(10,2))
 	description = Column(String(500))
 	imageName = Column(String(100), server_default = 'default_product.png')
-	dateAdded = Column(Date, nullable = False, server_default = datetime.date.today().strftime('%Y-%m-%d %H-%M-%S'))
+	dateAdded = Column(Date, nullable = False, 
+		server_default = datetime.date.today().strftime('%Y-%m-%d %H-%M-%S'))
 	category_id = Column(Integer, ForeignKey('category.id'))
 	category = relationship(Category)
 	seller_id = Column(Integer, ForeignKey('user.id'))
 	seller = relationship(User)
 	buyers = relationship(ShoppingCart)
 	reviews = relationship('Review', cascade='all, delete-orphan')
-	productsBeingBought = relationship('ShoppingCart', cascade='all, delete-orphan')
+	productsBeingBought = relationship('ShoppingCart', 
+		cascade='all, delete-orphan')
 
 	@property
 	def serialize(self):
@@ -83,10 +88,13 @@ class Product(Base):
 
 images = UploadSet('images', IMAGES)
 
+
 class ProductForm(Form):
 	name = StringField('Name', [InputRequired(), Length(min=1,max=100)])
-	price = DecimalField('Price', [InputRequired(), NumberRange(min=0,max=99999999.99)])
-	description = TextAreaField('Description', [InputRequired(), Length(min=1,max=500)])
+	price = DecimalField('Price', [InputRequired(), 
+		NumberRange(min=0,max=99999999.99)])
+	description = TextAreaField('Description', [InputRequired(), 
+		Length(min=1,max=500)])
 	image = FileField('Image', [FileAllowed(images, 'Upload image files only')])
 	category_id = SelectField('Category', coerce=int)
 
@@ -97,7 +105,8 @@ class Review(Base):
 	id = Column(Integer, primary_key = True)
 	rating = Column(Integer)
 	description = Column(String(500))
-	dateAdded = Column(Date, nullable = False, server_default = datetime.date.today().strftime('%Y-%m-%d'))
+	dateAdded = Column(Date, nullable = False, 
+		server_default = datetime.date.today().strftime('%Y-%m-%d'))
 	product_id = Column(Integer, ForeignKey('product.id'))
 	product = relationship(Product)
 	user_id = Column(Integer, ForeignKey('user.id'))
@@ -116,8 +125,10 @@ class Review(Base):
 
 
 class ReviewForm(Form):
-	rating = SelectField('Rating', [InputRequired()], choices=[(1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5')], coerce=int)
-	description = TextAreaField('Review', [InputRequired(), Length(min=1,max=500)])
+	rating = SelectField('Rating', [InputRequired()], 
+		choices=[(1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5')], coerce=int)
+	description = TextAreaField('Review', 
+		[InputRequired(), Length(min=1,max=500)])
 
 
 engine = create_engine('sqlite:///catalog.db')
