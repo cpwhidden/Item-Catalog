@@ -454,8 +454,8 @@ def newProduct():
 		if form.validate_on_submit():
 			product = Product()
 			form.populate_obj(product)
-			image = request.files['image']
-			if image is not None:
+			if 'image' in request.files and \
+					request.files['image'].filename != '':
 				product.imageName = secure_filename(image.filename)
 				productImagesPath = flask.config['PRODUCT_IMAGES_FOLDER'] 
 				path = os.path.join(productImagesPath, product.imageName)
@@ -483,7 +483,6 @@ def editProduct(product_id):
 		form.category_id.choices = [(cat.id, cat.name) for cat in categories]
 		if form.validate_on_submit():
 			form.populate_obj(product)
-			print request.files
 			if 'image' in request.files and \
 					request.files['image'].filename != '':
 				image = request.files['image']
