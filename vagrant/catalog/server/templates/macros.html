@@ -3,7 +3,8 @@
 	<div id="is-logged-in" class="row">
 		<div id="logout-div" class="col-xs-6 col-md-6">
 			<a href="{{url_for('logout')}}">Logout</a> |
-			<a href="{{url_for('userProfile', user_id = currentUser.id)}}">Account Info for {{currentUser.name}}</a>
+			<a href="{{url_for('userProfile', user_id = currentUser.id)}}">Account Info for {{currentUser.name}}</a> |
+			<a href="{{url_for('newProduct')}}">Add a product</a>
 		</div>
 		<div id="shopping-cart" class="col-xs-6 col-md-6">
 			<a href="{{url_for('shoppingCart')}}">Shopping Cart</a>
