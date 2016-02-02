@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+	<title>StuffMart: Newly Added Items</title>
+	<subtitle>Contains 20 of the latest added items to the StuffMart catalog</subtitle>
+	<link href="http://localhost:8000" rel="self" />
+	<id>http://localhost:8000</id>
+	<updated>2016-02-01 21:02:21.260510</updated>
+	
+	
+	<entry>
+		<title>Black Dress</title>
+		<link href="http://localhost:8000/product/1/profile" />
+		<id>http://localhost:8000/product/1/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>A beautiful dress</summary>
+		<content type="xhtml">
+			<div> Black Dress </div>
+			<div> A beautiful dress </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>T-shirt</title>
+		<link href="http://localhost:8000/product/2/profile" />
+		<id>http://localhost:8000/product/2/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>A basic black t-shirt</summary>
+		<content type="xhtml">
+			<div> T-shirt </div>
+			<div> A basic black t-shirt </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Socks</title>
+		<link href="http://localhost:8000/product/3/profile" />
+		<id>http://localhost:8000/product/3/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Nice athletic socks</summary>
+		<content type="xhtml">
+			<div> Socks </div>
+			<div> Nice athletic socks </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Jacket</title>
+		<link href="http://localhost:8000/product/4/profile" />
+		<id>http://localhost:8000/product/4/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Uniform-style jacket</summary>
+		<content type="xhtml">
+			<div> Jacket </div>
+			<div> Uniform-style jacket </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Skirt</title>
+		<link href="http://localhost:8000/product/5/profile" />
+		<id>http://localhost:8000/product/5/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>A very colorful skirt</summary>
+		<content type="xhtml">
+			<div> Skirt </div>
+			<div> A very colorful skirt </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Blouse</title>
+		<link href="http://localhost:8000/product/6/profile" />
+		<id>http://localhost:8000/product/6/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>A pink blouse</summary>
+		<content type="xhtml">
+			<div> Blouse </div>
+			<div> A pink blouse </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Suit</title>
+		<link href="http://localhost:8000/product/7/profile" />
+		<id>http://localhost:8000/product/7/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>A navy suit</summary>
+		<content type="xhtml">
+			<div> Suit </div>
+			<div> A navy suit </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Leather Boots</title>
+		<link href="http://localhost:8000/product/8/profile" />
+		<id>http://localhost:8000/product/8/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Sturdy leather boots</summary>
+		<content type="xhtml">
+			<div> Leather Boots </div>
+			<div> Sturdy leather boots </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Sandals</title>
+		<link href="http://localhost:8000/product/9/profile" />
+		<id>http://localhost:8000/product/9/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Comfortable flip-flops</summary>
+		<content type="xhtml">
+			<div> Sandals </div>
+			<div> Comfortable flip-flops </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Sneakers</title>
+		<link href="http://localhost:8000/product/10/profile" />
+		<id>http://localhost:8000/product/10/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>High quality running sneakers</summary>
+		<content type="xhtml">
+			<div> Sneakers </div>
+			<div> High quality running sneakers </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Slippers</title>
+		<link href="http://localhost:8000/product/11/profile" />
+		<id>http://localhost:8000/product/11/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Retro slippers</summary>
+		<content type="xhtml">
+			<div> Slippers </div>
+			<div> Retro slippers </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Dress shoes</title>
+		<link href="http://localhost:8000/product/12/profile" />
+		<id>http://localhost:8000/product/12/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Premium material dress shoes</summary>
+		<content type="xhtml">
+			<div> Dress shoes </div>
+			<div> Premium material dress shoes </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Hammer</title>
+		<link href="http://localhost:8000/product/13/profile" />
+		<id>http://localhost:8000/product/13/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>It's a hammer</summary>
+		<content type="xhtml">
+			<div> Hammer </div>
+			<div> It's a hammer </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Screwdriver</title>
+		<link href="http://localhost:8000/product/14/profile" />
+		<id>http://localhost:8000/product/14/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Phillip's screwdriver</summary>
+		<content type="xhtml">
+			<div> Screwdriver </div>
+			<div> Phillip's screwdriver </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Pliers</title>
+		<link href="http://localhost:8000/product/15/profile" />
+		<id>http://localhost:8000/product/15/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Needle-nose pliers</summary>
+		<content type="xhtml">
+			<div> Pliers </div>
+			<div> Needle-nose pliers </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Ruler</title>
+		<link href="http://localhost:8000/product/16/profile" />
+		<id>http://localhost:8000/product/16/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Metric ruler</summary>
+		<content type="xhtml">
+			<div> Ruler </div>
+			<div> Metric ruler </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Thermometer</title>
+		<link href="http://localhost:8000/product/17/profile" />
+		<id>http://localhost:8000/product/17/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Tells the temperature</summary>
+		<content type="xhtml">
+			<div> Thermometer </div>
+			<div> Tells the temperature </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Building blocks</title>
+		<link href="http://localhost:8000/product/18/profile" />
+		<id>http://localhost:8000/product/18/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Hundreds of blocking blocks</summary>
+		<content type="xhtml">
+			<div> Building blocks </div>
+			<div> Hundreds of blocking blocks </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Toy Truck</title>
+		<link href="http://localhost:8000/product/19/profile" />
+		<id>http://localhost:8000/product/19/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>Perfect gift for young kids</summary>
+		<content type="xhtml">
+			<div> Toy Truck </div>
+			<div> Perfect gift for young kids </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Stuffed Bear</title>
+		<link href="http://localhost:8000/product/20/profile" />
+		<id>http://localhost:8000/product/20/profile}</id>
+		<updated>2016-02-01</updated>
+		<summary>A child's best friend</summary>
+		<content type="xhtml">
+			<div> Stuffed Bear </div>
+			<div> A child's best friend </div>
+		</content>
+	</entry>
+	
+</feed>
