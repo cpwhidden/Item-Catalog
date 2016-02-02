@@ -461,8 +461,11 @@ def newProduct():
 				path = os.path.join(productImagesPath, product.imageName)
 				image.save(path)
 			product.seller = user
-			session.add(product)
-			session.commit()
+			try:
+				session.add(product)
+				session.commit()
+			except:
+				return 'Failed to add record. Please make sure to pick a unique name.'
 			return redirect(url_for('userProfile', user_id = user.id))
 		else:
 			print form.errors
@@ -490,8 +493,11 @@ def editProduct(product_id):
 				productImagesPath = flask.config['PRODUCT_IMAGES_FOLDER']
 				path = os.path.join(productImagesPath, product.imageName)
 				image.save(path)
-			session.add(product)
-			session.commit()
+			try:
+				session.add(product)
+				session.commit()
+			except:
+				return 'Failed to edit record. Please make sure to pick a unique name.'
 			return redirect(url_for('userProfile', 
 				user_id = product.seller.id))
 		else:
