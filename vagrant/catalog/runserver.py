@@ -18,6 +18,14 @@ flask.config['JOBS'] = [
             'func': 'server.views:buildNewlyAddedAtomFeed',
             'trigger': 'interval',
             'seconds': (60*60)
+        },
+        {
+            'id': 'buildNewlyAddedRSSFeedAtStartup',
+            'func': 'server.views:buildNewlyAddedRSSFeed'
+        },
+        {
+            'id': 'buildNewlyAddedAtomFeedAtStartup',
+            'func': 'server.views:buildNewlyAddedAtomFeed'
         }
     ]
 flask.config['SCHEDULER_VIEWS_ENABLED'] = True
@@ -28,5 +36,3 @@ scheduler.init_app(flask)
 scheduler.start()
 
 flask.run(host = '0.0.0.0', port = 8000)
-
-
