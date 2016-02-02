@@ -37,9 +37,10 @@ def home():
 #
 
 # Only needed to login as user from populator.py
+# For testing purposes only
 @flask.route('/login')
 def login():
-	user = session.query(User).first()
+	user = session.query(User).filter(User.id == 1, User.oauth_id == 0).first()
 	login_session['user_id'] = user.id
 	return redirect(url_for('home'))
 

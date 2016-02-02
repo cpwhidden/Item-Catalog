@@ -36,6 +36,9 @@ To populate the database with mock records:
 1. Navigate to `cd /vagrant/catalog/` at the command line
 2. Run `python populator.py`
 
+# Populated user
+After running the populator, you can easily login with the populator’s non-Google, non-Facebook account by navigating to `/login`.  This route is only provided for testing and debugging purposes.  Remove this route and its function(`login()`) in `views.py` before putting this website in production.
+
 # Access JSON endpoint
 All JSON requests are HTTP GET requests. The base directory is the domain name. For example, `http://localhost:8000/categories/json` to request all categories
 
