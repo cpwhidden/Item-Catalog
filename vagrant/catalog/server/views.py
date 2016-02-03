@@ -456,6 +456,7 @@ def newProduct():
 			form.populate_obj(product)
 			if 'image' in request.files and \
 					request.files['image'].filename != '':
+				image = request.files['image']
 				product.imageName = secure_filename(image.filename)
 				productImagesPath = flask.config['PRODUCT_IMAGES_FOLDER'] 
 				path = os.path.join(productImagesPath, product.imageName)
