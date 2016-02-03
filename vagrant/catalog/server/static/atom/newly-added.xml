@@ -6,14 +6,14 @@
 	<subtitle>Contains 20 of the latest added items to the StuffMart catalog</subtitle>
 	<link href="http://localhost:8000" rel="self" />
 	<id>http://localhost:8000</id>
-	<updated>2016-02-02 21:20:16.081337</updated>
+	<updated>2016-02-03 20:04:35.074843</updated>
 	
 	
 	<entry>
 		<title>Black Dress</title>
 		<link href="http://localhost:8000/product/1/profile" />
 		<id>http://localhost:8000/product/1/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>A beautiful dress</summary>
 		<content type="xhtml">
 			<div> Black Dress </div>
@@ -25,7 +25,7 @@
 		<title>T-shirt</title>
 		<link href="http://localhost:8000/product/2/profile" />
 		<id>http://localhost:8000/product/2/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>A basic black t-shirt</summary>
 		<content type="xhtml">
 			<div> T-shirt </div>
@@ -37,7 +37,7 @@
 		<title>Socks</title>
 		<link href="http://localhost:8000/product/3/profile" />
 		<id>http://localhost:8000/product/3/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Nice athletic socks</summary>
 		<content type="xhtml">
 			<div> Socks </div>
@@ -49,7 +49,7 @@
 		<title>Jacket</title>
 		<link href="http://localhost:8000/product/4/profile" />
 		<id>http://localhost:8000/product/4/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Uniform-style jacket</summary>
 		<content type="xhtml">
 			<div> Jacket </div>
@@ -61,7 +61,7 @@
 		<title>Skirt</title>
 		<link href="http://localhost:8000/product/5/profile" />
 		<id>http://localhost:8000/product/5/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>A very colorful skirt</summary>
 		<content type="xhtml">
 			<div> Skirt </div>
@@ -73,7 +73,7 @@
 		<title>Blouse</title>
 		<link href="http://localhost:8000/product/6/profile" />
 		<id>http://localhost:8000/product/6/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>A pink blouse</summary>
 		<content type="xhtml">
 			<div> Blouse </div>
@@ -85,7 +85,7 @@
 		<title>Suit</title>
 		<link href="http://localhost:8000/product/7/profile" />
 		<id>http://localhost:8000/product/7/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>A navy suit</summary>
 		<content type="xhtml">
 			<div> Suit </div>
@@ -97,7 +97,7 @@
 		<title>Leather Boots</title>
 		<link href="http://localhost:8000/product/8/profile" />
 		<id>http://localhost:8000/product/8/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Sturdy leather boots</summary>
 		<content type="xhtml">
 			<div> Leather Boots </div>
@@ -109,7 +109,7 @@
 		<title>Sandals</title>
 		<link href="http://localhost:8000/product/9/profile" />
 		<id>http://localhost:8000/product/9/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Comfortable flip-flops</summary>
 		<content type="xhtml">
 			<div> Sandals </div>
@@ -121,7 +121,7 @@
 		<title>Sneakers</title>
 		<link href="http://localhost:8000/product/10/profile" />
 		<id>http://localhost:8000/product/10/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>High quality running sneakers</summary>
 		<content type="xhtml">
 			<div> Sneakers </div>
@@ -133,7 +133,7 @@
 		<title>Slippers</title>
 		<link href="http://localhost:8000/product/11/profile" />
 		<id>http://localhost:8000/product/11/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Retro slippers</summary>
 		<content type="xhtml">
 			<div> Slippers </div>
@@ -145,7 +145,7 @@
 		<title>Dress shoes</title>
 		<link href="http://localhost:8000/product/12/profile" />
 		<id>http://localhost:8000/product/12/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Premium material dress shoes</summary>
 		<content type="xhtml">
 			<div> Dress shoes </div>
@@ -157,7 +157,7 @@
 		<title>Hammer</title>
 		<link href="http://localhost:8000/product/13/profile" />
 		<id>http://localhost:8000/product/13/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>It's a hammer</summary>
 		<content type="xhtml">
 			<div> Hammer </div>
@@ -169,7 +169,7 @@
 		<title>Screwdriver</title>
 		<link href="http://localhost:8000/product/14/profile" />
 		<id>http://localhost:8000/product/14/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Phillip's screwdriver</summary>
 		<content type="xhtml">
 			<div> Screwdriver </div>
@@ -181,7 +181,7 @@
 		<title>Pliers</title>
 		<link href="http://localhost:8000/product/15/profile" />
 		<id>http://localhost:8000/product/15/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Needle-nose pliers</summary>
 		<content type="xhtml">
 			<div> Pliers </div>
@@ -193,7 +193,7 @@
 		<title>Ruler</title>
 		<link href="http://localhost:8000/product/16/profile" />
 		<id>http://localhost:8000/product/16/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Metric ruler</summary>
 		<content type="xhtml">
 			<div> Ruler </div>
@@ -205,7 +205,7 @@
 		<title>Thermometer</title>
 		<link href="http://localhost:8000/product/17/profile" />
 		<id>http://localhost:8000/product/17/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Tells the temperature</summary>
 		<content type="xhtml">
 			<div> Thermometer </div>
@@ -217,7 +217,7 @@
 		<title>Building blocks</title>
 		<link href="http://localhost:8000/product/18/profile" />
 		<id>http://localhost:8000/product/18/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Hundreds of blocking blocks</summary>
 		<content type="xhtml">
 			<div> Building blocks </div>
@@ -229,7 +229,7 @@
 		<title>Toy Truck</title>
 		<link href="http://localhost:8000/product/19/profile" />
 		<id>http://localhost:8000/product/19/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>Perfect gift for young kids</summary>
 		<content type="xhtml">
 			<div> Toy Truck </div>
@@ -241,7 +241,7 @@
 		<title>Stuffed Bear</title>
 		<link href="http://localhost:8000/product/20/profile" />
 		<id>http://localhost:8000/product/20/profile}</id>
-		<updated>2016-02-02</updated>
+		<updated>2016-02-03</updated>
 		<summary>A child's best friend</summary>
 		<content type="xhtml">
 			<div> Stuffed Bear </div>

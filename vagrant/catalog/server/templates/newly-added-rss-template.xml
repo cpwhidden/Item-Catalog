@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+ <title>StuffMart: Newly Added Items</title>
+ <description>Contains 20 of the latest added items to the StuffMart catalog</description>
+ <link>http://localhost:8000</link>
+ <lastBuildDate>{{ buildDateTime }}</lastBuildDate>
+ <ttl>60</ttl>
+ 
+ {% for product in products %}
+ <item>
+  <title>{{ product.name }}</title>
+  <description>{{ product.description }}</description>
+  <link>http://localhost:8000/product/{{product.id}}/profile</link>
+  <guid isPermaLink="true">{{ product.id }}</guid>
+  <pubDate>{{ product.dateAdded.strftime('%Y-%m-%d') }}</pubDate>
+ </item>
+ {% endfor %}
+
+</channel>
+</rss>

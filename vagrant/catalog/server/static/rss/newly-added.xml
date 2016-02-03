@@ -4,7 +4,7 @@
  <title>StuffMart: Newly Added Items</title>
  <description>Contains 20 of the latest added items to the StuffMart catalog</description>
  <link>http://localhost:8000</link>
- <lastBuildDate>2016-02-02 21:20:16.075506</lastBuildDate>
+ <lastBuildDate>2016-02-03 20:04:35.071005</lastBuildDate>
  <ttl>60</ttl>
  
  
@@ -13,7 +13,7 @@
   <description>A beautiful dress</description>
   <link>http://localhost:8000/product/1/profile</link>
   <guid isPermaLink="true">1</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -21,7 +21,7 @@
   <description>A basic black t-shirt</description>
   <link>http://localhost:8000/product/2/profile</link>
   <guid isPermaLink="true">2</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -29,7 +29,7 @@
   <description>Nice athletic socks</description>
   <link>http://localhost:8000/product/3/profile</link>
   <guid isPermaLink="true">3</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -37,7 +37,7 @@
   <description>Uniform-style jacket</description>
   <link>http://localhost:8000/product/4/profile</link>
   <guid isPermaLink="true">4</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -45,7 +45,7 @@
   <description>A very colorful skirt</description>
   <link>http://localhost:8000/product/5/profile</link>
   <guid isPermaLink="true">5</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -53,7 +53,7 @@
   <description>A pink blouse</description>
   <link>http://localhost:8000/product/6/profile</link>
   <guid isPermaLink="true">6</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -61,7 +61,7 @@
   <description>A navy suit</description>
   <link>http://localhost:8000/product/7/profile</link>
   <guid isPermaLink="true">7</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -69,7 +69,7 @@
   <description>Sturdy leather boots</description>
   <link>http://localhost:8000/product/8/profile</link>
   <guid isPermaLink="true">8</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -77,7 +77,7 @@
   <description>Comfortable flip-flops</description>
   <link>http://localhost:8000/product/9/profile</link>
   <guid isPermaLink="true">9</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -85,7 +85,7 @@
   <description>High quality running sneakers</description>
   <link>http://localhost:8000/product/10/profile</link>
   <guid isPermaLink="true">10</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -93,7 +93,7 @@
   <description>Retro slippers</description>
   <link>http://localhost:8000/product/11/profile</link>
   <guid isPermaLink="true">11</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -101,7 +101,7 @@
   <description>Premium material dress shoes</description>
   <link>http://localhost:8000/product/12/profile</link>
   <guid isPermaLink="true">12</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -109,7 +109,7 @@
   <description>It's a hammer</description>
   <link>http://localhost:8000/product/13/profile</link>
   <guid isPermaLink="true">13</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -117,7 +117,7 @@
   <description>Phillip's screwdriver</description>
   <link>http://localhost:8000/product/14/profile</link>
   <guid isPermaLink="true">14</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -125,7 +125,7 @@
   <description>Needle-nose pliers</description>
   <link>http://localhost:8000/product/15/profile</link>
   <guid isPermaLink="true">15</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -133,7 +133,7 @@
   <description>Metric ruler</description>
   <link>http://localhost:8000/product/16/profile</link>
   <guid isPermaLink="true">16</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -141,7 +141,7 @@
   <description>Tells the temperature</description>
   <link>http://localhost:8000/product/17/profile</link>
   <guid isPermaLink="true">17</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -149,7 +149,7 @@
   <description>Hundreds of blocking blocks</description>
   <link>http://localhost:8000/product/18/profile</link>
   <guid isPermaLink="true">18</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -157,7 +157,7 @@
   <description>Perfect gift for young kids</description>
   <link>http://localhost:8000/product/19/profile</link>
   <guid isPermaLink="true">19</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
@@ -165,7 +165,7 @@
   <description>A child's best friend</description>
   <link>http://localhost:8000/product/20/profile</link>
   <guid isPermaLink="true">20</guid>
-  <pubDate>2016-02-02</pubDate>
+  <pubDate>2016-02-03</pubDate>
  </item>
  
 
