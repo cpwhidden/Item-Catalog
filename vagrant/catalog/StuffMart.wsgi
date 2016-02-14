@@ -37,5 +37,5 @@ application.config['SCHEDULER_VIEWS_ENABLED'] = True
 application.debug = True
 
 scheduler = APScheduler()
-scheduler.init_app(flask)
+scheduler.init_app(application)
 scheduler.start()
