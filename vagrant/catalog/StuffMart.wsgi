@@ -8,7 +8,7 @@ logging.basicConfig(stream=sys.stderr)
 
 from server import flask as application
 application.secret_key = 'qPHE[Cht}*kSCVango3i'
-application.config['APP-DIR'] = os.path.abspath(os.path.dirname(__file__))
+application.config['APP_DIR'] = os.path.abspath(os.path.dirname(__file__))
 application.config['WHOOSH_BASE'] = 'server/whoosh'
 application.config['PRODUCT_IMAGES_FOLDER'] = 'server/static/product_images/'
 application.config['JOBS'] = [

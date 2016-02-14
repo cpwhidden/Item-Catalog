@@ -718,11 +718,11 @@ def makeJSONResponse(message, status):
 
 
 def getGoogleClientSecret():
-	return url_for('static', filename='google_client_secrets.json')
+	return os.path.join(app.config['APP_DIR'], 'server/static/google_client_secrets.json')
 
 
 def getFacebookClientSecrets():
-	return url_for('static', filename='facebook_client_secrets.json')
+	return os.path.join(app.config['APP_DIR'], 'server/static/facebook_client_secrets.json')
 
 
 def getCurrentUser():
