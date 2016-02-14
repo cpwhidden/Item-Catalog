@@ -31,8 +31,9 @@ flask.config['JOBS'] = [
 flask.config['SCHEDULER_VIEWS_ENABLED'] = True
 flask.debug = True
 
-scheduler = APScheduler()
-scheduler.init_app(flask)
-scheduler.start()
+if __name__ == '__main__':
+    scheduler = APScheduler()
+    scheduler.init_app(flask)
+    scheduler.start()
 
-flask.run(host = '0.0.0.0', port = 8000)
+    flask.run(host = '0.0.0.0', port = 8000)
