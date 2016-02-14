@@ -1,9 +1,9 @@
 activate_this = '/var/www/html/venv/bin/activate_this.py'
 execfile(activate_this, dict(__file__=activate_this))
 
-import sys
+import sys, os, logging
+from flask_apscheduler import APScheduler
 sys.path.insert(0, 'var/www/html/StuffMart/vagrant/catalog')
-import logging
 logging.basicConfig(stream=sys.stderr)
 
 from server import flask as application
