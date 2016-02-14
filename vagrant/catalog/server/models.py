@@ -131,6 +131,6 @@ class ReviewForm(Form):
 		[InputRequired(), Length(min=1,max=500)])
 
 
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine('postgresql://catalog:catalog@localhost:5432/catalog')
 
 Base.metadata.create_all(engine)
