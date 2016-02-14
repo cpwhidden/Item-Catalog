@@ -6,7 +6,7 @@
 	<subtitle>Contains 20 of the latest added items to the StuffMart catalog</subtitle>
 	<link href="http://localhost:8000" rel="self" />
 	<id>http://localhost:8000</id>
-	<updated>2016-02-03 20:04:35.074843</updated>
+	<updated>2016-02-14 02:54:41.769333</updated>
 	
 	
 	<entry>
@@ -70,21 +70,9 @@
 	</entry>
 	
 	<entry>
-		<title>Blouse</title>
+		<title>Suit</title>
 		<link href="http://localhost:8000/product/6/profile" />
 		<id>http://localhost:8000/product/6/profile}</id>
-		<updated>2016-02-03</updated>
-		<summary>A pink blouse</summary>
-		<content type="xhtml">
-			<div> Blouse </div>
-			<div> A pink blouse </div>
-		</content>
-	</entry>
-	
-	<entry>
-		<title>Suit</title>
-		<link href="http://localhost:8000/product/7/profile" />
-		<id>http://localhost:8000/product/7/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>A navy suit</summary>
 		<content type="xhtml">
@@ -95,8 +83,8 @@
 	
 	<entry>
 		<title>Leather Boots</title>
-		<link href="http://localhost:8000/product/8/profile" />
-		<id>http://localhost:8000/product/8/profile}</id>
+		<link href="http://localhost:8000/product/7/profile" />
+		<id>http://localhost:8000/product/7/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>Sturdy leather boots</summary>
 		<content type="xhtml">
@@ -107,8 +95,8 @@
 	
 	<entry>
 		<title>Sandals</title>
-		<link href="http://localhost:8000/product/9/profile" />
-		<id>http://localhost:8000/product/9/profile}</id>
+		<link href="http://localhost:8000/product/8/profile" />
+		<id>http://localhost:8000/product/8/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>Comfortable flip-flops</summary>
 		<content type="xhtml">
@@ -119,8 +107,8 @@
 	
 	<entry>
 		<title>Sneakers</title>
-		<link href="http://localhost:8000/product/10/profile" />
-		<id>http://localhost:8000/product/10/profile}</id>
+		<link href="http://localhost:8000/product/9/profile" />
+		<id>http://localhost:8000/product/9/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>High quality running sneakers</summary>
 		<content type="xhtml">
@@ -131,8 +119,8 @@
 	
 	<entry>
 		<title>Slippers</title>
-		<link href="http://localhost:8000/product/11/profile" />
-		<id>http://localhost:8000/product/11/profile}</id>
+		<link href="http://localhost:8000/product/10/profile" />
+		<id>http://localhost:8000/product/10/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>Retro slippers</summary>
 		<content type="xhtml">
@@ -143,8 +131,8 @@
 	
 	<entry>
 		<title>Dress shoes</title>
-		<link href="http://localhost:8000/product/12/profile" />
-		<id>http://localhost:8000/product/12/profile}</id>
+		<link href="http://localhost:8000/product/11/profile" />
+		<id>http://localhost:8000/product/11/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>Premium material dress shoes</summary>
 		<content type="xhtml">
@@ -155,8 +143,8 @@
 	
 	<entry>
 		<title>Hammer</title>
-		<link href="http://localhost:8000/product/13/profile" />
-		<id>http://localhost:8000/product/13/profile}</id>
+		<link href="http://localhost:8000/product/12/profile" />
+		<id>http://localhost:8000/product/12/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>It's a hammer</summary>
 		<content type="xhtml">
@@ -167,8 +155,8 @@
 	
 	<entry>
 		<title>Screwdriver</title>
-		<link href="http://localhost:8000/product/14/profile" />
-		<id>http://localhost:8000/product/14/profile}</id>
+		<link href="http://localhost:8000/product/13/profile" />
+		<id>http://localhost:8000/product/13/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>Phillip's screwdriver</summary>
 		<content type="xhtml">
@@ -179,8 +167,8 @@
 	
 	<entry>
 		<title>Pliers</title>
-		<link href="http://localhost:8000/product/15/profile" />
-		<id>http://localhost:8000/product/15/profile}</id>
+		<link href="http://localhost:8000/product/14/profile" />
+		<id>http://localhost:8000/product/14/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>Needle-nose pliers</summary>
 		<content type="xhtml">
@@ -191,8 +179,8 @@
 	
 	<entry>
 		<title>Ruler</title>
-		<link href="http://localhost:8000/product/16/profile" />
-		<id>http://localhost:8000/product/16/profile}</id>
+		<link href="http://localhost:8000/product/15/profile" />
+		<id>http://localhost:8000/product/15/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>Metric ruler</summary>
 		<content type="xhtml">
@@ -203,8 +191,8 @@
 	
 	<entry>
 		<title>Thermometer</title>
-		<link href="http://localhost:8000/product/17/profile" />
-		<id>http://localhost:8000/product/17/profile}</id>
+		<link href="http://localhost:8000/product/16/profile" />
+		<id>http://localhost:8000/product/16/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>Tells the temperature</summary>
 		<content type="xhtml">
@@ -215,8 +203,8 @@
 	
 	<entry>
 		<title>Building blocks</title>
-		<link href="http://localhost:8000/product/18/profile" />
-		<id>http://localhost:8000/product/18/profile}</id>
+		<link href="http://localhost:8000/product/17/profile" />
+		<id>http://localhost:8000/product/17/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>Hundreds of blocking blocks</summary>
 		<content type="xhtml">
@@ -227,8 +215,8 @@
 	
 	<entry>
 		<title>Toy Truck</title>
-		<link href="http://localhost:8000/product/19/profile" />
-		<id>http://localhost:8000/product/19/profile}</id>
+		<link href="http://localhost:8000/product/18/profile" />
+		<id>http://localhost:8000/product/18/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>Perfect gift for young kids</summary>
 		<content type="xhtml">
@@ -239,13 +227,25 @@
 	
 	<entry>
 		<title>Stuffed Bear</title>
-		<link href="http://localhost:8000/product/20/profile" />
-		<id>http://localhost:8000/product/20/profile}</id>
+		<link href="http://localhost:8000/product/19/profile" />
+		<id>http://localhost:8000/product/19/profile}</id>
 		<updated>2016-02-03</updated>
 		<summary>A child's best friend</summary>
 		<content type="xhtml">
 			<div> Stuffed Bear </div>
 			<div> A child's best friend </div>
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Dice</title>
+		<link href="http://localhost:8000/product/20/profile" />
+		<id>http://localhost:8000/product/20/profile}</id>
+		<updated>2016-02-03</updated>
+		<summary>Dice that can be used for all kinds of games</summary>
+		<content type="xhtml">
+			<div> Dice </div>
+			<div> Dice that can be used for all kinds of games </div>
 		</content>
 	</entry>
 	

@@ -4,7 +4,7 @@
  <title>StuffMart: Newly Added Items</title>
  <description>Contains 20 of the latest added items to the StuffMart catalog</description>
  <link>http://localhost:8000</link>
- <lastBuildDate>2016-02-03 20:04:35.071005</lastBuildDate>
+ <lastBuildDate>2016-02-14 02:54:41.766332</lastBuildDate>
  <ttl>60</ttl>
  
  
@@ -49,120 +49,120 @@
  </item>
  
  <item>
-  <title>Blouse</title>
-  <description>A pink blouse</description>
+  <title>Suit</title>
+  <description>A navy suit</description>
   <link>http://localhost:8000/product/6/profile</link>
   <guid isPermaLink="true">6</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Suit</title>
-  <description>A navy suit</description>
+  <title>Leather Boots</title>
+  <description>Sturdy leather boots</description>
   <link>http://localhost:8000/product/7/profile</link>
   <guid isPermaLink="true">7</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Leather Boots</title>
-  <description>Sturdy leather boots</description>
+  <title>Sandals</title>
+  <description>Comfortable flip-flops</description>
   <link>http://localhost:8000/product/8/profile</link>
   <guid isPermaLink="true">8</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Sandals</title>
-  <description>Comfortable flip-flops</description>
+  <title>Sneakers</title>
+  <description>High quality running sneakers</description>
   <link>http://localhost:8000/product/9/profile</link>
   <guid isPermaLink="true">9</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Sneakers</title>
-  <description>High quality running sneakers</description>
+  <title>Slippers</title>
+  <description>Retro slippers</description>
   <link>http://localhost:8000/product/10/profile</link>
   <guid isPermaLink="true">10</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Slippers</title>
-  <description>Retro slippers</description>
+  <title>Dress shoes</title>
+  <description>Premium material dress shoes</description>
   <link>http://localhost:8000/product/11/profile</link>
   <guid isPermaLink="true">11</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Dress shoes</title>
-  <description>Premium material dress shoes</description>
+  <title>Hammer</title>
+  <description>It's a hammer</description>
   <link>http://localhost:8000/product/12/profile</link>
   <guid isPermaLink="true">12</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Hammer</title>
-  <description>It's a hammer</description>
+  <title>Screwdriver</title>
+  <description>Phillip's screwdriver</description>
   <link>http://localhost:8000/product/13/profile</link>
   <guid isPermaLink="true">13</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Screwdriver</title>
-  <description>Phillip's screwdriver</description>
+  <title>Pliers</title>
+  <description>Needle-nose pliers</description>
   <link>http://localhost:8000/product/14/profile</link>
   <guid isPermaLink="true">14</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Pliers</title>
-  <description>Needle-nose pliers</description>
+  <title>Ruler</title>
+  <description>Metric ruler</description>
   <link>http://localhost:8000/product/15/profile</link>
   <guid isPermaLink="true">15</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Ruler</title>
-  <description>Metric ruler</description>
+  <title>Thermometer</title>
+  <description>Tells the temperature</description>
   <link>http://localhost:8000/product/16/profile</link>
   <guid isPermaLink="true">16</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Thermometer</title>
-  <description>Tells the temperature</description>
+  <title>Building blocks</title>
+  <description>Hundreds of blocking blocks</description>
   <link>http://localhost:8000/product/17/profile</link>
   <guid isPermaLink="true">17</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Building blocks</title>
-  <description>Hundreds of blocking blocks</description>
+  <title>Toy Truck</title>
+  <description>Perfect gift for young kids</description>
   <link>http://localhost:8000/product/18/profile</link>
   <guid isPermaLink="true">18</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Toy Truck</title>
-  <description>Perfect gift for young kids</description>
+  <title>Stuffed Bear</title>
+  <description>A child's best friend</description>
   <link>http://localhost:8000/product/19/profile</link>
   <guid isPermaLink="true">19</guid>
   <pubDate>2016-02-03</pubDate>
  </item>
  
  <item>
-  <title>Stuffed Bear</title>
-  <description>A child's best friend</description>
+  <title>Dice</title>
+  <description>Dice that can be used for all kinds of games</description>
   <link>http://localhost:8000/product/20/profile</link>
   <guid isPermaLink="true">20</guid>
   <pubDate>2016-02-03</pubDate>

@@ -16,7 +16,7 @@ Base = declarative_base()
 class ShoppingCart(Base):
 	__tablename__ = 'shopping_cart'
 
-	buyer_id = Column(Integer, ForeignKey('user.id'), primary_key = True)
+	buyer_id = Column(Integer, ForeignKey('login.id'), primary_key = True)
 	product_id = Column(Integer, ForeignKey('product.id'), primary_key = True)
 	quantity = Column(Integer, server_default='1')
 	buyer = relationship('User', back_populates='shoppingCartProducts')
@@ -38,7 +38,7 @@ class Category(Base):
 
 
 class User(Base):
-	__tablename__ = 'user'
+	__tablename__ = 'login'
 
 	id = Column(Integer, primary_key = True)
 	oauth_id = Column(Integer, unique = True)
@@ -66,7 +66,7 @@ class Product(Base):
 		server_default = datetime.date.today().strftime('%Y-%m-%d %H-%M-%S'))
 	category_id = Column(Integer, ForeignKey('category.id'))
 	category = relationship(Category)
-	seller_id = Column(Integer, ForeignKey('user.id'))
+	seller_id = Column(Integer, ForeignKey('login.id'))
 	seller = relationship(User)
 	buyers = relationship(ShoppingCart)
 	reviews = relationship('Review', cascade='all, delete-orphan')
@@ -96,7 +96,7 @@ class ProductForm(Form):
 	description = TextAreaField('Description', [InputRequired(), 
 		Length(min=1,max=500)])
 	image = FileField('Image', [FileAllowed(images, 'Upload image files only')])
-	category_id = SelectField('Category', coerce=int)
+	category_id = SelectField('Category', default=1, coerce=int)
 
 
 class Review(Base):
@@ -109,7 +109,7 @@ class Review(Base):
 		server_default = datetime.date.today().strftime('%Y-%m-%d'))
 	product_id = Column(Integer, ForeignKey('product.id'))
 	product = relationship(Product)
-	user_id = Column(Integer, ForeignKey('user.id'))
+	user_id = Column(Integer, ForeignKey('login.id'))
 	user = relationship(User)
 
 	@property

@@ -24,7 +24,7 @@ def home():
 	highestRated = session.query(Product.id, Product.name, Product.price, 
 		Product.imageName, func.avg(Review.rating).label('averageRating')) \
 		.join(Review, Product.id == Review.product_id).group_by(Product.id) \
-		.order_by(desc(Review.rating)).limit(5).all()
+		.order_by(desc(func.avg(Review.rating))).limit(5).all()
 	newlyAdded = session.query(Product).order_by(desc(Product.dateAdded)) \
 		.limit(5).all()
 	currentUser = getCurrentUser()
@@ -40,7 +40,7 @@ def home():
 # For testing purposes only
 @flask.route('/login')
 def login():
-	user = session.query(User).filter(User.id == 1, User.oauth_id == 0).first()
+	user = session.query(User).filter(User.id == 0, User.oauth_id == 0).first()
 	login_session['user_id'] = user.id
 	return redirect(url_for('home'))
 
@@ -181,10 +181,8 @@ def facebookLogout():
 		oauth_id = user.oauth_id
 		url = 'https://graph.facebook.com/%s/permissions?access_token=%s' \
 			% (oauth_id, login_session['facebook_access_token'])
-		print url
 		h = httplib2.Http()
 		result = h.request(url, 'DELETE')[0]
-		print result
 		if result['status'] == '200':
 			del login_session['user_id']
 			del login_session['facebook_access_token']
@@ -352,7 +350,8 @@ def categoryPage(category_name, currentPage):
 		func.avg(Review.rating).label('averageRating')) \
 		.join(Review, Product.id == Review.product_id) \
 		.filter(Product.category == currentCategory) \
-		.group_by(Product.id).order_by(desc(Review.rating)).limit(5).all()
+		.group_by(Product.id).order_by(desc(func.avg(Review.rating))) \
+		.limit(5).all()
 	newlyAdded = session.query(Product) \
 		.filter(Product.category == currentCategory) \
 		.order_by(desc(Product.dateAdded)).limit(5).all()
@@ -450,7 +449,7 @@ def newProduct():
 		categories = session.query(Category).order_by(Category.name).all()
 		form = ProductForm(request.form)
 		form.category_id.choices = \
-			[(index, cat.name) for (index, cat) in enumerate(categories)]
+			[(category.id, category.name) for category in categories]
 		if form.validate_on_submit():
 			product = Product()
 			form.populate_obj(product)
@@ -466,10 +465,10 @@ def newProduct():
 				session.add(product)
 				session.commit()
 			except:
+				session.rollback()
 				return 'Failed to add record. Please make sure to pick a unique name.'
 			return redirect(url_for('userProfile', user_id = user.id))
 		else:
-			print form.errors
 			return render_template('new-product.html', currentUser = user, 
 				form = form)
 	else:
@@ -484,7 +483,7 @@ def editProduct(product_id):
 	if matchesLoginUser(product.seller):
 		form = ProductForm(request.form, product)
 		categories = session.query(Category).all()
-		form.category_id.choices = [(cat.id, cat.name) for cat in categories]
+		form.category_id.choices = [(category.id, category.name) for category in categories]
 		if form.validate_on_submit():
 			form.populate_obj(product)
 			if 'image' in request.files and \
@@ -498,6 +497,7 @@ def editProduct(product_id):
 				session.add(product)
 				session.commit()
 			except:
+				session.rollback()
 				return 'Failed to edit record. Please make sure to pick a unique name.'
 			return redirect(url_for('userProfile', 
 				user_id = product.seller.id))

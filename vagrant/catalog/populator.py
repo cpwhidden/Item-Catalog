@@ -4,7 +4,7 @@ import datetime
 from server import flask
 from server.models import Base, Category, User, Product, Review
 
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine('postgresql://catalog:catalog@localhost:5432/catalog')
 
 Base.metadata.bind = engine
 
@@ -23,7 +23,7 @@ session.add(tools)
 toys = Category(name='Toys')
 session.add(toys)
 
-chris = User(oauth_id='0', name='Chris')
+chris = User(id='0', oauth_id='0', name='Chris')
 session.add(chris)
 
 # Clothes
