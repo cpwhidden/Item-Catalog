@@ -1,7 +1,8 @@
 from server import flask
 from flask_apscheduler import APScheduler
+import sys
 import logging
-logging.basicConfig()
+logging.basicConfig(stream=sys.stderr)
 
 flask.secret_key = 'qPHE[Cht}*kSCVango3i'
 flask.config['WHOOSH_BASE'] = 'server/whoosh'
