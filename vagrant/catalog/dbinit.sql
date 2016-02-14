@@ -11,7 +11,7 @@ INSERT INTO "category" (name) VALUES('Tools');
 INSERT INTO "category" (name) VALUES('Toys');
 CREATE TABLE login (
 	id SERIAL NOT NULL, 
-	oauth_id BIGINT, 
+	oauth_id NUMERIC(50), 
 	name VARCHAR(60), 
 	email VARCHAR(100), 
 	PRIMARY KEY (id), 

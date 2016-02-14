@@ -728,7 +728,7 @@ def getFacebookClientSecrets():
 def getCurrentUser():
 	if 'user_id' in login_session and login_session['user_id'] is not None:
 		return session.query(User) \
-			.filter(User.id == login_session['user_id']).one()
+			.filter(User.id == login_session['user_id']).first()
 	else:
 		return None
 
