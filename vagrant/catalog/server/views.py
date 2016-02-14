@@ -718,11 +718,11 @@ def makeJSONResponse(message, status):
 
 
 def getGoogleClientSecret():
-	return os.path.join(app.config['APP_DIR'], 'server/static/google_client_secrets.json')
+	return os.path.join(flask.config['APP_DIR'], 'server/static/google_client_secrets.json')
 
 
 def getFacebookClientSecrets():
-	return os.path.join(app.config['APP_DIR'], 'server/static/facebook_client_secrets.json')
+	return os.path.join(flask.config['APP_DIR'], 'server/static/facebook_client_secrets.json')
 
 
 def getCurrentUser():
