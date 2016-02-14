@@ -458,7 +458,7 @@ def newProduct():
 				image = request.files['image']
 				product.imageName = secure_filename(image.filename)
 				appDir = flask.config['APP_DIR']
-				path = os.path.join(flask.config['APP_DIR'], 'server/static/product_images/%s' % product.imageName)
+				path = os.path.join(flask.config['APP_DIR'], 'server/static/product_images/')
 				image.save(path)
 			product.seller = user
 			try:
