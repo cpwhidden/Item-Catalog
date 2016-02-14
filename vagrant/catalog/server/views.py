@@ -459,8 +459,7 @@ def newProduct():
 				product.imageName = secure_filename(image.filename)
 				appDir = flask.config['APP_DIR']
 				path = os.path.join(appDir,
-					'vagrant/catalog/server/static/product_images', 
-					product.imageName)
+					'server/static/product_images/%s' % product.imageName)
 				image.save(path)
 			product.seller = user
 			try:
@@ -493,9 +492,8 @@ def editProduct(product_id):
 				image = request.files['image']
 				product.imageName = secure_filename(image.filename)
 				appDir = flask.config['APP_DIR']
-				path = os.path.join(appDir, 
-					'vagrant/catalog/server/static/product_images', 
-					product.imageName)
+				path = os.path.join(appDir,
+					'server/static/product_images/%s' % product.imageName)
 				image.save(path)
 			try:
 				session.add(product)
